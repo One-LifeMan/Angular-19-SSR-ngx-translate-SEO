@@ -1,59 +1,89 @@
-# AngularSsrNgxTranslate
+# Angular + SSR + Ngx-translate
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
 
-## Development server
+# Table of contents:
 
-To start a local development server, run:
+- [Angular + SSR + Ngx-translate](#angular--ssr--ngx-translate)
+- [Table of contents:](#table-of-contents)
+  - [Create a new workspace](#create-a-new-workspace)
+  - [Add linters and code formatter (optionally)](#add-linters-and-code-formatter-optionally)
+    - [Install packages](#install-packages)
+    - [Create configuration files](#create-configuration-files)
+    - [Configure settings.json](#configure-settingsjson)
+    - [Format all files in the project](#format-all-files-in-the-project)
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Create a new workspace
 
 ```bash
-ng generate --help
+ng new angular-ssr-ngx-translate --package-manager=pnpm
 ```
 
-## Building
+Which stylesheet format would you like to use?
+✔️ Sass (SCSS)
+Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)?
+✔️ Yes
+Would you like to use the Server Routing and App Engine APIs (Developer Preview) for this server application?
+✔️ No
 
-To build the project run:
+## Add linters and code formatter (optionally)
+
+### Install packages
 
 ```bash
-ng build
+pnpm add -D eslint @eslint/js angular-eslint typescript-eslint eslint-config-prettier eslint-plugin-prettier prettier prettier-plugin-organize-attributes @trivago/prettier-plugin-sort-imports stylelint stylelint-config-standard-scss stylelint-scss stylelint-prettier stylelint-order
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Create configuration files
 
-## Running unit tests
+- .prettierignore
+- .prettierrc
+- .stylelintrc.json
+- eslint.config.js
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Configure settings.json
+
+```json
+{
+  // === FORMATTER & LINTING ===
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "prettier.requireConfig": true,
+  "prettier.configPath": ".prettierrc",
+  // -------------------------------------
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.validate": ["javascript", "typescript", "html"],
+  "eslint.useFlatConfig": true,
+  "eslint.workingDirectories": ["../src"],
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  // -------------------------------------
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss"],
+  "[scss]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "explicit"
+    }
+  },
+  "[css]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "explicit"
+    }
+  }
+}
+```
+
+### Format all files in the project
 
 ```bash
-ng test
+pnpx prettier --write .
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

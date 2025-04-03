@@ -490,6 +490,16 @@ touch src/app/styles/_theme.scss
   --on-secondary-color: #000;
   --accent-color: #ffa500;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #191919;
+    --on-primary-color: #ccc;
+    --secondary-color: #131313;
+    --on-secondary-color: #ccc;
+    --accent-color: #ffa500;
+  }
+}
 ```
 
 #### src\styles.scss
@@ -603,7 +613,6 @@ a {
 
     &.active {
       color: var(--accent-color);
-      background-color: var(--on-secondary-color);
     }
   }
 }

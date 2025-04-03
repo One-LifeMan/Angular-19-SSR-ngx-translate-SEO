@@ -1,0 +1,11 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "ABOUT": "About"
+  },
+  "CONTENT": {
+    "HOME": "home works!",
+    "ABOUT": "about works!",
+    "404": "Page not found"
+  }
+}

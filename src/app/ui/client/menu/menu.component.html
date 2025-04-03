@@ -3,20 +3,22 @@
     <li class="nav__item">
       <a
         class="nav__link"
+        [routerLink]="['/' | localize]"
         [routerLinkActiveOptions]="{ exact: true }"
-        routerLink="/"
         routerLinkActive="active"
-        >Home</a
       >
+        {{ "NAV.HOME" | translate }}
+      </a>
     </li>
     <li class="nav__item">
       <a
         class="nav__link"
+        [routerLink]="['about' | localize]"
         [routerLinkActiveOptions]="{ exact: true }"
-        routerLink="/about"
         routerLinkActive="active"
-        >About</a
       >
+        {{ "NAV.ABOUT" | translate }}
+      </a>
     </li>
   </ul>
 </nav>

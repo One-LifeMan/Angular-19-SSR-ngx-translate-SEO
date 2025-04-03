@@ -38,6 +38,18 @@ importers:
       '@csstools/normalize.css':
         specifier: ^12.1.1
         version: 12.1.1
+      '@gilsdav/ngx-translate-router':
+        specifier: ^7.2.1
+        version: 7.2.1(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/router@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2))(@ngx-translate/core@16.0.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))
+      '@gilsdav/ngx-translate-router-http-loader':
+        specifier: ^2.0.0
+        version: 2.0.0(a0fb041efaf69e4a64aa2fdbb617b43d)
+      '@ngx-translate/core':
+        specifier: ^16.0.4
+        version: 16.0.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))
+      '@ngx-translate/http-loader':
+        specifier: ^16.0.1
+        version: 16.0.1(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))
       express:
         specifier: ^4.18.2
         version: 4.21.2
@@ -116,7 +128,7 @@ importers:
         version: 16.17.0(typescript@5.7.3)
       stylelint-config-standard-scss:
         specifier: ^14.0.0
-        version: 14.0.0(postcss@8.5.2)(stylelint@16.17.0(typescript@5.7.3))
+        version: 14.0.0(postcss@8.5.3)(stylelint@16.17.0(typescript@5.7.3))
       stylelint-order:
         specifier: ^6.0.4
         version: 6.0.4(stylelint@16.17.0(typescript@5.7.3))
@@ -1105,6 +1117,23 @@ packages:
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@gilsdav/ngx-translate-router-http-loader@2.0.0':
+    resolution: {integrity: sha512-L5EguzAM7CIDrdnKEQw0AjNzmrxbhmUHdzs5R+WS1snBsJykfvjpl6UkPTAH7umt52nUanmO8bxXoRQxYRuBAA==}
+    peerDependencies:
+      '@angular/common': '>=13.0.0'
+      '@angular/core': '>=13.0.0'
+      '@angular/router': '>=13.0.0'
+      '@gilsdav/ngx-translate-router': '>=4.0.0'
+      '@ngx-translate/core': '>=11.0.1'
+
+  '@gilsdav/ngx-translate-router@7.2.1':
+    resolution: {integrity: sha512-h4z24m7d7IQRogDu7muNFtkdHr6zPf0O/M/CEIL2Td9ad667ULTBccJkFdp5ZtgM2dul6moV9jccMFdgIbIjKg==}
+    peerDependencies:
+      '@angular/common': '>=16.2.12'
+      '@angular/core': '>=16.2.12'
+      '@angular/router': '>=16.2.12'
+      '@ngx-translate/core': '>=15.0.0'
+
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
     engines: {node: '>=18.18.0'}
@@ -1489,6 +1518,18 @@ packages:
       '@angular/compiler-cli': ^19.0.0 || ^19.2.0-next.0
       typescript: '>=5.5 <5.9'
       webpack: ^5.54.0
+
+  '@ngx-translate/core@16.0.4':
+    resolution: {integrity: sha512-s8llTL2SJvROhqttxvEs7Cg+6qSf4kvZPFYO+cTOY1d8DWTjlutRkWAleZcPPoeX927Dm7ALfL07G7oYDJ7z6w==}
+    peerDependencies:
+      '@angular/common': '>=16'
+      '@angular/core': '>=16'
+
+  '@ngx-translate/http-loader@16.0.1':
+    resolution: {integrity: sha512-xJEOUpvs6Zfc8G4cmQmegFOEpfYSoplTHHoisPNrATXjRBjpaKsBaPOXlZsuFUW2XV00s16gIyI4+9z1XkO5bw==}
+    peerDependencies:
+      '@angular/common': '>=16'
+      '@angular/core': '>=16'
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -6072,6 +6113,23 @@ snapshots:
       '@eslint/core': 0.13.0
       levn: 0.4.1
 
+  '@gilsdav/ngx-translate-router-http-loader@2.0.0(a0fb041efaf69e4a64aa2fdbb617b43d)':
+    dependencies:
+      '@angular/common': 19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/core': 19.2.4(rxjs@7.8.2)(zone.js@0.15.0)
+      '@angular/router': 19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2)
+      '@gilsdav/ngx-translate-router': 7.2.1(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/router@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2))(@ngx-translate/core@16.0.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))
+      '@ngx-translate/core': 16.0.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))
+      tslib: 2.8.1
+
+  '@gilsdav/ngx-translate-router@7.2.1(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/router@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2))(@ngx-translate/core@16.0.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))':
+    dependencies:
+      '@angular/common': 19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/core': 19.2.4(rxjs@7.8.2)(zone.js@0.15.0)
+      '@angular/router': 19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2)
+      '@ngx-translate/core': 16.0.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))
+      tslib: 2.8.1
+
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.6':
@@ -6385,6 +6443,18 @@ snapshots:
       '@angular/compiler-cli': 19.2.4(@angular/compiler@19.2.4)(typescript@5.7.3)
       typescript: 5.7.3
       webpack: 5.98.0(esbuild@0.25.1)
+
+  '@ngx-translate/core@16.0.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))':
+    dependencies:
+      '@angular/common': 19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/core': 19.2.4(rxjs@7.8.2)(zone.js@0.15.0)
+      tslib: 2.8.1
+
+  '@ngx-translate/http-loader@16.0.1(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))':
+    dependencies:
+      '@angular/common': 19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/core': 19.2.4(rxjs@7.8.2)(zone.js@0.15.0)
+      tslib: 2.8.1
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -8965,9 +9035,9 @@ snapshots:
     dependencies:
       postcss: 8.5.3
 
-  postcss-scss@4.0.9(postcss@8.5.2):
+  postcss-scss@4.0.9(postcss@8.5.3):
     dependencies:
-      postcss: 8.5.2
+      postcss: 8.5.3
 
   postcss-selector-parser@7.1.0:
     dependencies:
@@ -9514,26 +9584,26 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  stylelint-config-recommended-scss@14.1.0(postcss@8.5.2)(stylelint@16.17.0(typescript@5.7.3)):
+  stylelint-config-recommended-scss@14.1.0(postcss@8.5.3)(stylelint@16.17.0(typescript@5.7.3)):
     dependencies:
-      postcss-scss: 4.0.9(postcss@8.5.2)
+      postcss-scss: 4.0.9(postcss@8.5.3)
       stylelint: 16.17.0(typescript@5.7.3)
       stylelint-config-recommended: 14.0.1(stylelint@16.17.0(typescript@5.7.3))
       stylelint-scss: 6.11.1(stylelint@16.17.0(typescript@5.7.3))
     optionalDependencies:
-      postcss: 8.5.2
+      postcss: 8.5.3
 
   stylelint-config-recommended@14.0.1(stylelint@16.17.0(typescript@5.7.3)):
     dependencies:
       stylelint: 16.17.0(typescript@5.7.3)
 
-  stylelint-config-standard-scss@14.0.0(postcss@8.5.2)(stylelint@16.17.0(typescript@5.7.3)):
+  stylelint-config-standard-scss@14.0.0(postcss@8.5.3)(stylelint@16.17.0(typescript@5.7.3)):
     dependencies:
       stylelint: 16.17.0(typescript@5.7.3)
-      stylelint-config-recommended-scss: 14.1.0(postcss@8.5.2)(stylelint@16.17.0(typescript@5.7.3))
+      stylelint-config-recommended-scss: 14.1.0(postcss@8.5.3)(stylelint@16.17.0(typescript@5.7.3))
       stylelint-config-standard: 36.0.1(stylelint@16.17.0(typescript@5.7.3))
     optionalDependencies:
-      postcss: 8.5.2
+      postcss: 8.5.3
 
   stylelint-config-standard@36.0.1(stylelint@16.17.0(typescript@5.7.3)):
     dependencies:

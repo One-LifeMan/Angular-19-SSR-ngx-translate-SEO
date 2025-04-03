@@ -1,62 +1,40 @@
-# Angular + SSR + Ngx-translate
+# Angular + SSR + Ngx-translate <!-- omit in toc -->
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
 
-# Table of contents:
+**Table of contents:** <!-- omit in toc -->
 
-- [Angular + SSR + Ngx-translate](#angular--ssr--ngx-translate)
-- [Table of contents:](#table-of-contents)
-  - [Create a new workspace](#create-a-new-workspace)
-  - [Add linters and code formatter (optionally)](#add-linters-and-code-formatter-optionally)
-    - [Install packages](#install-packages)
-    - [Create configuration files](#create-configuration-files)
-    - [Configure settings.json](#configure-settingsjson)
-    - [Format all files in the project](#format-all-files-in-the-project)
-  - [Create an initial project structure](#create-an-initial-project-structure)
-    - [Generate components \& environments](#generate-components--environments)
-    - [Configure environments](#configure-environments)
-      - [src\\environments\\environment.ts](#srcenvironmentsenvironmentts)
-      - [src\\environments\\environment.development.ts](#srcenvironmentsenvironmentdevelopmentts)
-    - [Add another environment type](#add-another-environment-type)
-      - [Create environment.watch.ts](#create-environmentwatchts)
-      - [Edit angular.json](#edit-angularjson)
-      - [Edit package.json](#edit-packagejson)
-    - [Configure paths](#configure-paths)
-      - [Create export files](#create-export-files)
-      - [src\\app\\layouts\\index.ts](#srcapplayoutsindexts)
-      - [src\\app\\pages\\index.ts](#srcapppagesindexts)
-      - [tsconfig.json](#tsconfigjson)
-      - [app.routes.ts](#approutests)
-    - [Make changes to components](#make-changes-to-components)
-      - [src\\app\\](#srcapp)
-        - [app.component.html](#appcomponenthtml)
-      - [src\\app\\layouts\\client-layout\\](#srcapplayoutsclient-layout)
-        - [client-layout.component.html](#client-layoutcomponenthtml)
-        - [client-layout.component.ts](#client-layoutcomponentts)
-      - [src\\app\\ui\\client\\footer\\](#srcappuiclientfooter)
-        - [footer.component.html](#footercomponenthtml)
-      - [src\\app\\ui\\client\\header\\](#srcappuiclientheader)
-        - [header.component.html](#headercomponenthtml)
-        - [header.component.ts](#headercomponentts)
-      - [src\\app\\ui\\client\\menu\\](#srcappuiclientmenu)
-        - [menu.component.html](#menucomponenthtml)
-        - [menu.component.ts](#menucomponentts)
-      - [src\\app\\ui\\client\\language-switcher\\](#srcappuiclientlanguage-switcher)
-        - [language-switcher.component.html](#language-switchercomponenthtml)
-        - [language-switcher.component.ts](#language-switchercomponentts)
-    - [Let's add some styles (optional)](#lets-add-some-styles-optional)
-      - [Install @csstools/normalize.css](#install-csstoolsnormalizecss)
-      - [Create style files (optional)](#create-style-files-optional)
-        - [src/app/styles/variables.scss](#srcappstylesvariablesscss)
-        - [src/app/styles/theme.scss](#srcappstylesthemescss)
-      - [src\\styles.scss](#srcstylesscss)
-      - [client-layout.component.scss](#client-layoutcomponentscss)
-      - [footer.component.scss](#footercomponentscss)
-      - [header.component.scss](#headercomponentscss)
-      - [menu.component.scss](#menucomponentscss)
-      - [language-switcher.component.scss](#language-switchercomponentscss)
+- [1. Create a new workspace](#1-create-a-new-workspace)
+- [2. Add linters and code formatter (optionally)](#2-add-linters-and-code-formatter-optionally)
+  - [2.1. Install packages](#21-install-packages)
+  - [2.2. Create configuration files](#22-create-configuration-files)
+  - [2.3. Configure settings.json](#23-configure-settingsjson)
+  - [2.4. Format all files in the project](#24-format-all-files-in-the-project)
+- [3. Create an initial project structure](#3-create-an-initial-project-structure)
+  - [3.1. Generate components \& environments](#31-generate-components--environments)
+  - [3.2. Configure environments](#32-configure-environments)
+  - [3.3. Add another environment type](#33-add-another-environment-type)
+    - [3.3.1. Create environment.watch.ts](#331-create-environmentwatchts)
+    - [3.3.2. Edit angular.json](#332-edit-angularjson)
+    - [3.3.3. Edit package.json](#333-edit-packagejson)
+  - [3.4. Configure paths](#34-configure-paths)
+    - [3.4.1. Create export files](#341-create-export-files)
+  - [3.5. Make changes to components](#35-make-changes-to-components)
+  - [3.6. Let's add some styles (optional)](#36-lets-add-some-styles-optional)
+    - [3.6.1. Install @csstools/normalize.css](#361-install-csstoolsnormalizecss)
+    - [3.6.2. Create style files (optional)](#362-create-style-files-optional)
+- [4. Add translation](#4-add-translation)
+  - [4.1. Install](#41-install)
+  - [4.2. Create translation files](#42-create-translation-files)
+  - [4.3. Create a file containing our locales](#43-create-a-file-containing-our-locales)
+  - [4.4. Create Loaders Factory](#44-create-loaders-factory)
+  - [4.5. Identify elements in the markup that need to be translated](#45-identify-elements-in-the-markup-that-need-to-be-translated)
+  - [4.6. Repeat this with the other components](#46-repeat-this-with-the-other-components)
+  - [4.7. Add logic to the setCurrentUrl method](#47-add-logic-to-the-setcurrenturl-method)
+  - [4.8. Important!](#48-important)
+- [Acknowledgements](#acknowledgements)
 
-## Create a new workspace
+## 1. Create a new workspace
 
 ```bash
 ng new angular-ssr-ngx-translate --package-manager=pnpm
@@ -69,22 +47,22 @@ Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SS
 Would you like to use the Server Routing and App Engine APIs (Developer Preview) for this server application?
 ✔️ No
 
-## Add linters and code formatter (optionally)
+## 2. Add linters and code formatter (optionally)
 
-### Install packages
+### 2.1. Install packages
 
 ```bash
 pnpm add -D eslint @eslint/js angular-eslint typescript-eslint eslint-config-prettier eslint-plugin-prettier prettier prettier-plugin-organize-attributes @trivago/prettier-plugin-sort-imports stylelint stylelint-config-standard-scss stylelint-scss stylelint-prettier stylelint-order
 ```
 
-### Create configuration files
+### 2.2. Create configuration files
 
 - .prettierignore
 - .prettierrc
 - .stylelintrc.json
 - eslint.config.js
 
-### Configure settings.json
+### 2.3. Configure settings.json
 
 ```json
 {
@@ -125,15 +103,15 @@ pnpm add -D eslint @eslint/js angular-eslint typescript-eslint eslint-config-pre
 }
 ```
 
-### Format all files in the project
+### 2.4. Format all files in the project
 
 ```bash
 pnpx prettier --write .
 ```
 
-## Create an initial project structure
+## 3. Create an initial project structure
 
-### Generate components & environments
+### 3.1. Generate components & environments
 
 ```bash
 ng g c layouts/client-layout
@@ -147,9 +125,9 @@ ng g c ui/client/language-switcher
 ng generate environments
 ```
 
-### Configure environments
+### 3.2. Configure environments
 
-#### src\environments\environment.ts
+**src\environments\environment.ts**
 
 ```ts
 export const environment = {
@@ -159,7 +137,7 @@ export const environment = {
 };
 ```
 
-#### src\environments\environment.development.ts
+**src\environments\environment.development.ts**
 
 ```ts
 export const environment = {
@@ -169,14 +147,14 @@ export const environment = {
 };
 ```
 
-### Add another environment type
+### 3.3. Add another environment type
 
 Why?
 Because to run both frontend and backend in development mode you need to run the scripts `"watch"` and `"serve:ssr:angular-ssr-ngx-translate"`, but in development mode `environment.appUrl` = "http://localhost:4200/", and the server will be started at "http://localhost:4000". Because of this mismatch, requests to the server where `environment.appUrl` will be used - will not work!
 Therefore, I decided to create a separate environment type for the script `"watch"`.
 I am sure that there may be other solutions, but I chose this.
 
-#### Create environment.watch.ts
+#### 3.3.1. Create environment.watch.ts
 
 ```bash
 touch src/environments/environment.watch.ts
@@ -190,7 +168,7 @@ export const environment = {
 };
 ```
 
-#### Edit angular.json
+#### 3.3.2. Edit angular.json
 
 Add the "watch" configuration to projects.angular-ssr-ngx-translate.architect.build.configurations.
 These are the same settings as for "development", except that "src/environments/environment.ts" is changed to "src/environments/environment.watch.ts" instead of "src/environments/environment.development.ts".
@@ -227,7 +205,7 @@ These are the same settings as for "development", except that "src/environments/
 }
 ```
 
-#### Edit package.json
+#### 3.3.3. Edit package.json
 
 replace "development" with "watch" in the script of the same name "watch"
 
@@ -237,22 +215,22 @@ replace "development" with "watch" in the script of the same name "watch"
 ...
 ```
 
-### Configure paths
+### 3.4. Configure paths
 
-#### Create export files
+#### 3.4.1. Create export files
 
 ```bash
 touch src/app/layouts/index.ts
 touch src/app/pages/index.ts
 ```
 
-#### src\app\layouts\index.ts
+**src\app\layouts\index.ts**
 
 ```ts
 export * from "./client-layout/client-layout.component";
 ```
 
-#### src\app\pages\index.ts
+**src\app\pages\index.ts**
 
 ```ts
 export * from "./client/home/home.component";
@@ -260,7 +238,7 @@ export * from "./client/about/about.component";
 export * from "./not-found-page/not-found-page.component";
 ```
 
-#### tsconfig.json
+**tsconfig.json**
 
 ```json
 {
@@ -277,7 +255,7 @@ export * from "./not-found-page/not-found-page.component";
 }
 ```
 
-#### app.routes.ts
+**app.routes.ts**
 
 ```ts
 import { Routes } from "@angular/router";
@@ -303,19 +281,15 @@ export const routes: Routes = [
 ];
 ```
 
-### Make changes to components
+### 3.5. Make changes to components
 
-#### src\app\
-
-##### app.component.html
+**src\app\app.component.html**
 
 ```html
 <router-outlet></router-outlet>
 ```
 
-#### src\app\layouts\client-layout\
-
-##### client-layout.component.html
+**src\app\layouts\client-layout\client-layout.component.html**
 
 ```html
 <app-header></app-header>
@@ -323,7 +297,7 @@ export const routes: Routes = [
 <app-footer></app-footer>
 ```
 
-##### client-layout.component.ts
+**src\app\layouts\client-layout\client-layout.component.ts**
 
 ```ts
 ...
@@ -331,9 +305,7 @@ imports: [HeaderComponent, FooterComponent, RouterOutlet],
 ...
 ```
 
-#### src\app\ui\client\footer\
-
-##### footer.component.html
+**src\app\ui\client\footer\footer.component.html**
 
 ```html
 <footer class="footer">
@@ -345,9 +317,7 @@ imports: [HeaderComponent, FooterComponent, RouterOutlet],
 </footer>
 ```
 
-#### src\app\ui\client\header\
-
-##### header.component.html
+**src\app\ui\client\header\header.component.html**
 
 ```html
 <header class="header">
@@ -356,7 +326,7 @@ imports: [HeaderComponent, FooterComponent, RouterOutlet],
 </header>
 ```
 
-##### header.component.ts
+**src\app\ui\client\header\header.component.ts**
 
 ```ts
 ...
@@ -364,9 +334,7 @@ imports: [HeaderComponent, FooterComponent, RouterOutlet],
 ...
 ```
 
-#### src\app\ui\client\menu\
-
-##### menu.component.html
+**src\app\ui\client\menu\menu.component.html**
 
 ```html
 <nav class="nav">
@@ -393,7 +361,7 @@ imports: [HeaderComponent, FooterComponent, RouterOutlet],
 </nav>
 ```
 
-##### menu.component.ts
+**src\app\ui\client\menu\menu.component.ts**
 
 ```ts
 ...
@@ -401,9 +369,7 @@ imports: [HeaderComponent, FooterComponent, RouterOutlet],
 ...
 ```
 
-#### src\app\ui\client\language-switcher\
-
-##### language-switcher.component.html
+**src\app\ui\client\language-switcher\language-switcher.component.html**
 
 ```html
 <ul class="lang-switcher">
@@ -424,7 +390,7 @@ imports: [HeaderComponent, FooterComponent, RouterOutlet],
 </ul>
 ```
 
-##### language-switcher.component.ts
+**src\app\ui\client\language-switcher\language-switcher.component.ts**
 
 ```ts
 import { environment } from "../../../../environments/environment";
@@ -455,15 +421,15 @@ export class LanguageSwitcherComponent {
 }
 ```
 
-### Let's add some styles (optional)
+### 3.6. Let's add some styles (optional)
 
-#### Install @csstools/normalize.css
+#### 3.6.1. Install @csstools/normalize.css
 
 ```bash
 pnpm add @csstools/normalize.css
 ```
 
-#### Create style files (optional)
+#### 3.6.2. Create style files (optional)
 
 ```bash
 mkdir src/app/styles
@@ -471,7 +437,7 @@ touch src/app/styles/_variables.scss
 touch src/app/styles/_theme.scss
 ```
 
-##### src/app/styles/variables.scss
+**src/app/styles/variables.scss**
 
 ```scss
 :root {
@@ -480,7 +446,7 @@ touch src/app/styles/_theme.scss
 }
 ```
 
-##### src/app/styles/theme.scss
+**src/app/styles/theme.scss**
 
 ```scss
 :root {
@@ -502,7 +468,7 @@ touch src/app/styles/_theme.scss
 }
 ```
 
-#### src\styles.scss
+**src\styles.scss**
 
 ```scss
 /* You can add global styles to this file, and also import other style files */
@@ -547,7 +513,7 @@ a {
 }
 ```
 
-#### client-layout.component.scss
+**src\app\layouts\client-layout\client-layout.component.scss**
 
 ```scss
 :host {
@@ -561,7 +527,7 @@ a {
 }
 ```
 
-#### footer.component.scss
+**src\app\ui\client\footer\footer.component.scss**
 
 ```scss
 .footer {
@@ -573,7 +539,7 @@ a {
 }
 ```
 
-#### header.component.scss
+**src\app\ui\client\header\header.component.scss**
 
 ```scss
 .header {
@@ -590,7 +556,7 @@ a {
 }
 ```
 
-#### menu.component.scss
+**src\app\ui\client\menu\menu.component.scss**
 
 ```scss
 .nav {
@@ -629,7 +595,7 @@ a {
 }
 ```
 
-#### language-switcher.component.scss
+**src\app\ui\client\language-switcher\language-switcher.component.scss**
 
 ```scss
 .lang-switcher {
@@ -645,7 +611,6 @@ a {
 
     &.active {
       color: var(--accent-color);
-      background-color: var(--on-secondary-color);
     }
   }
 }
@@ -664,3 +629,293 @@ a {
   }
 }
 ```
+
+## 4. Add translation
+
+@ngx-translate/core:
+
+- This is the core package for internationalization (i18n) in Angular.
+- It provides the infrastructure for managing translations in your application.
+- It allows you to load, store, and display translations in different languages.
+
+@ngx-translate/http-loader:
+
+- This is a helper package for @ngx-translate/core.
+- It allows you to load translation files from the server via HTTP requests.
+- This is useful for dynamically loading translations based on the selected language.
+
+@gilsdav/ngx-translate-router:
+
+- This package allows you to translate route URLs in your Angular application.
+- This is useful for creating multilingual URLs that improve SEO and usability.
+- Intercepts Router initialization and translates each route path.
+
+@gilsdav/ngx-translate-router-http-loader:
+
+- This is a helper package for @gilsdav/ngx-translate-router.
+- It allows you to download route translation files from the server via HTTP requests.
+- Used to download translations for @gilsdav/ngx-translate-router.
+
+### 4.1. Install
+
+```bash
+pnpm add @ngx-translate/core @ngx-translate/http-loader @gilsdav/ngx-translate-router @gilsdav/ngx-translate-router-http-loader
+```
+
+### 4.2. Create translation files
+
+```bash
+mkdir public/i18n
+touch public/i18n/en.json
+touch public/i18n/uk.json
+```
+
+**public\i18n\en.json**
+
+```json
+{
+  "NAV": {
+    "HOME": "Home",
+    "ABOUT": "About"
+  },
+  "CONTENT": {
+    "HOME": "home works!",
+    "ABOUT": "about works!",
+    "404": "Page not found"
+  }
+}
+```
+
+**public\i18n\uk.json**
+
+```json
+{
+  "NAV": {
+    "HOME": "Головна",
+    "ABOUT": "Про нас"
+  },
+  "CONTENT": {
+    "HOME": "home працює!",
+    "ABOUT": "about працює!",
+    "404": "Сторінку не знайдено"
+  }
+}
+```
+
+### 4.3. Create a file containing our locales
+
+```bash
+touch public/locales.json
+```
+
+**public\locales.json**
+
+```json
+{
+  "locales": ["en", "uk"],
+  "prefix": "ROUTES."
+}
+```
+
+### 4.4. Create Loaders Factory
+
+We will need Loaders Factory - functions that will load translation and locale files. So let's create them right away.
+
+```bash
+mkdir src/app/core
+touch src/app/core/translate.config.ts
+```
+
+**src\app\core\translate.config.ts**
+
+```ts
+import { Location } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { LocalizeRouterSettings } from "@gilsdav/ngx-translate-router";
+import { LocalizeRouterHttpLoader } from "@gilsdav/ngx-translate-router-http-loader";
+import { TranslateService } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { environment } from "src/environments/environment";
+
+export const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
+  new TranslateHttpLoader(http, `${environment.appUrl}i18n/`, ".json");
+
+export const localizeLoaderFactory = (
+  translate: TranslateService,
+  location: Location,
+  settings: LocalizeRouterSettings,
+  http: HttpClient,
+) => {
+  return new LocalizeRouterHttpLoader(
+    translate,
+    location,
+    settings,
+    http,
+    `${environment.appUrl}locales.json`,
+  );
+};
+```
+
+**src\app\app.config.ts**
+
+```ts
+import { routes } from "./app.routes";
+import { httpLoaderFactory, localizeLoaderFactory } from "./core/translate.config";
+import { Location } from "@angular/common";
+import { HttpClient, provideHttpClient, withFetch } from "@angular/common/http";
+import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
+import { provideClientHydration, withEventReplay } from "@angular/platform-browser";
+import { provideRouter, withDisabledInitialNavigation } from "@angular/router";
+import {
+  LocalizeParser,
+  LocalizeRouterSettings,
+  withLocalizeRouter,
+} from "@gilsdav/ngx-translate-router";
+import { provideTranslateService, TranslateLoader, TranslateService } from "@ngx-translate/core";
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(
+      routes,
+      withDisabledInitialNavigation(),
+      withLocalizeRouter(routes, {
+        parser: {
+          provide: LocalizeParser,
+          useFactory: localizeLoaderFactory,
+          deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient],
+        },
+        initialNavigation: true,
+      }),
+    ),
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withFetch()),
+    provideTranslateService({
+      defaultLanguage: "en",
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+  ],
+};
+```
+
+Make sure that:
+
+- imported Location because Angular doesn't import it automatically
+- withDisabledInitialNavigation() inside provideRouter
+- added provideHttpClient(withFetch())
+
+### 4.5. Identify elements in the markup that need to be translated
+
+**src\app\ui\client\menu\menu.component.ts**
+
+Import TranslatePipe, LocalizeRouterPipe in component
+
+```ts
+  imports: [RouterLink, RouterLinkActive, TranslatePipe, LocalizeRouterPipe],
+```
+
+**src\app\ui\client\menu\menu.component.html**
+
+Add pipes translate - for content that needs to be translated and localize - to routerLink to add language code to the path
+
+```html
+<nav class="nav">
+  <ul class="nav__list">
+    <li class="nav__item">
+      <a
+        class="nav__link"
+        [routerLink]="['/' | localize]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+      >
+        {{ "NAV.HOME" | translate }}
+      </a>
+    </li>
+    <li class="nav__item">
+      <a
+        class="nav__link"
+        [routerLink]="['about' | localize]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+      >
+        {{ "NAV.ABOUT" | translate }}
+      </a>
+    </li>
+  </ul>
+</nav>
+```
+
+### 4.6. Repeat this with the other components
+
+**src\app\pages\client\home\home.component.html**
+
+```html
+<p>{{ "CONTENT.HOME" | translate }}</p>
+```
+
+**src\app\pages\client\about\about.component.html**
+
+```html
+<p>{{ "CONTENT.ABOUT" | translate }}</p>
+```
+
+**src\app\pages\not-found-page\not-found-page.component.html**
+
+```html
+<p>{{ "CONTENT.404" | translate }}</p>
+```
+
+### 4.7. Add logic to the setCurrentUrl method
+
+**src\app\ui\client\language-switcher\language-switcher.component.ts**
+
+```ts
+import { environment } from "../../../../environments/environment";
+import { filter } from "../../../shared/rxjs";
+import { Component, inject } from "@angular/core";
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { LocalizeRouterService } from "@gilsdav/ngx-translate-router";
+
+@Component({
+  selector: "app-language-switcher",
+  imports: [RouterLink, RouterLinkActive],
+  templateUrl: "./language-switcher.component.html",
+  styleUrl: "./language-switcher.component.scss",
+})
+export class LanguageSwitcherComponent {
+  private readonly router = inject(Router);
+  private readonly localizeRouterService = inject(LocalizeRouterService); // <---
+  languages = environment.languages;
+  protected currentUrl = "";
+
+  constructor() {
+    this.setCurrentUrl(); // <---
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => this.setCurrentUrl());
+  }
+
+  private setCurrentUrl = () => {
+    this.currentUrl = this.router.url
+      .replace("/" + this.localizeRouterService.parser.currentLang, "")
+      .split("?")[0]; // <---
+  };
+}
+```
+
+### 4.8. Important!
+
+In angular.json, change "prerender" to false, otherwise an error will occur during building because http requests to files (en.json ) do not work, since the server is not running and there is no access to the files.
+
+## Acknowledgements
+
+I would like to thank the following people:
+
+- [Olivier Combe](https://github.com/ocombe) and [Andreas Loew](https://github.com/CodeAndWeb) for creating ngx-translate.
+- [David Gilson](https://github.com/gilsdav) for creating ngx-translate-router.
+- [Robert Isaac](https://robert-isaac.medium.com/) for his article ["Best Practices for Angular Internationalization with SSR"](https://robert-isaac.medium.com/best-practices-for-angular-internationalization-with-ssr-384a98ee672a).

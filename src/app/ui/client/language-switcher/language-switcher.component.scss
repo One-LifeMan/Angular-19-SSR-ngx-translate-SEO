@@ -1,0 +1,31 @@
+.lang-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-small);
+
+  &__item {
+  }
+
+  &__link {
+    padding: var(--gap-small);
+
+    &.active {
+      color: var(--accent-color);
+      background-color: var(--on-secondary-color);
+    }
+  }
+}
+
+@media (hover: hover) {
+  .lang-switcher {
+    &__item {
+    }
+
+    &__link {
+      &:hover {
+        color: var(--primary-color);
+        background-color: var(--on-primary-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.nav {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-small);
+    align-items: center;
+  }
+
+  &__item {
+  }
+
+  &__link {
+    display: flex;
+    padding-top: var(--gap-small);
+    padding-right: var(--gap-medium);
+    padding-bottom: var(--gap-small);
+    padding-left: var(--gap-medium);
+
+    &.active {
+      color: var(--accent-color);
+      background-color: var(--on-secondary-color);
+    }
+  }
+}
+
+@media (hover: hover) {
+  .nav {
+    &__link {
+      &:hover {
+        color: var(--primary-color);
+        background-color: var(--on-primary-color);
+      }
+    }
+  }
+}

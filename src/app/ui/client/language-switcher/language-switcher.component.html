@@ -1,0 +1,16 @@
+<ul class="lang-switcher">
+  @for (lang of languages; track lang) {
+    <li class="lang-switcher__item">
+      <a
+        class="lang-switcher__link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLink="/{{ lang }}/{{ currentUrl }}"
+        routerLinkActive="active"
+      >
+        {{ lang }}
+      </a>
+    </li>
+  } @empty {
+    <li>List of supported languages not found</li>
+  }
+</ul>

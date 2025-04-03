@@ -1,0 +1,12 @@
+.header {
+  color: var(--on-secondary-color);
+  background-color: var(--secondary-color);
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

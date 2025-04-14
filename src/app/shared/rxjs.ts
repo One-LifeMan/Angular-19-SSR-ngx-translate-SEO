@@ -1,3 +1,3 @@
-import { filter } from "rxjs";
+import { filter, Subscription, Observable, take } from "rxjs";
 
-export { filter };
+export { filter, Subscription, Observable, take };

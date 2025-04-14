@@ -20,7 +20,8 @@
     "baseUrl": "./",
     "paths": {
       "@app/layouts": ["src/app/layouts/index.ts"],
-      "@app/pages": ["src/app/pages/index.ts"]
+      "@app/pages": ["src/app/pages/index.ts"],
+      "@app/rxjs": ["src/app/shared/rxjs.ts"]
     }
   },
   "angularCompilerOptions": {

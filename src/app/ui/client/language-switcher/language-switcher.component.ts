@@ -1,6 +1,7 @@
 import { environment } from "../../../../environments/environment";
 import { filter } from "../../../shared/rxjs";
 import { Component, inject } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { LocalizeRouterService } from "@gilsdav/ngx-translate-router";
 
@@ -20,7 +21,10 @@ export class LanguageSwitcherComponent {
     this.setCurrentUrl();
 
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        takeUntilDestroyed(),
+      )
       .subscribe(() => this.setCurrentUrl());
   }
 

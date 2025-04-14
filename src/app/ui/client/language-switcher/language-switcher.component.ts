@@ -12,12 +12,12 @@ import { LocalizeRouterService } from "@gilsdav/ngx-translate-router";
 })
 export class LanguageSwitcherComponent {
   private readonly router = inject(Router);
-  private readonly localizeRouterService = inject(LocalizeRouterService); // <---
-  languages = environment.languages;
-  protected currentUrl = "";
+  private readonly localizeRouterService = inject(LocalizeRouterService);
+  readonly languages = environment.languages;
+  currentUrl = "";
 
   constructor() {
-    this.setCurrentUrl(); // <---
+    this.setCurrentUrl();
 
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -25,8 +25,7 @@ export class LanguageSwitcherComponent {
   }
 
   private setCurrentUrl = () => {
-    this.currentUrl = this.router.url
-      .replace("/" + this.localizeRouterService.parser.currentLang, "")
-      .split("?")[0]; // <---
+    const langPrefix = `/${this.localizeRouterService.parser.currentLang}`;
+    this.currentUrl = this.router.url.replace(langPrefix, "").split("?")[0];
   };
 }

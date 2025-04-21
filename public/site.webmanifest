@@ -1,12 +1,12 @@
 {
   "lang": "en-US",
-  "name": "Angular v19 + SSR + ngx-translate",
+  "name": "Angular v19 + SSR + ngx-translate + SEO",
   "name_localized": {
-    "uk": { "value": "Angular v19 + SSR + ngx-translate", "dir": "rtl" }
+    "uk": { "value": "Angular v19 + SSR + ngx-translate + SEO", "dir": "rtl" }
   },
-  "short_name": "Angular SSR translate",
+  "short_name": "ASNTS",
   "short_name_localized": {
-    "uk": { "value": "Angular SSR translate", "dir": "rtl" }
+    "uk": { "value": "ASNTS", "dir": "rtl" }
   },
   "icons": [
     {

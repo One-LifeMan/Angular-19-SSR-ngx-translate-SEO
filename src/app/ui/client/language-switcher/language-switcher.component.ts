@@ -1,8 +1,8 @@
 import { environment } from "../../../../environments/environment";
-import { filter } from "../../../shared/rxjs";
 import { Component, inject } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { filter } from "@app/rxjs";
 import { LocalizeRouterService } from "@gilsdav/ngx-translate-router";
 
 @Component({

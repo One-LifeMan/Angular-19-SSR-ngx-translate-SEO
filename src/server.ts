@@ -1,6 +1,7 @@
 import bootstrap from "./main.server";
 import i18nextConfig from "./server/core/i18next-config";
 import { getAllProducts, getProductBySlug } from "./server/core/mock-data";
+import { getSitemap } from "./server/core/sitemap";
 import { APP_BASE_HREF } from "@angular/common";
 import { CommonEngine, isMainModule } from "@angular/ssr/node";
 import express from "express";
@@ -33,6 +34,13 @@ app.get("/", (req, res) => {
   res.redirect(301, `/${lang}`);
 });
 
+app.get("/sitemap.xml", (req, res) => {
+  const xml = getSitemap();
+
+  res.header("Content-Type", "application/xml");
+  res.send(xml);
+});
+
 app.get("/api/products", (req, res) => {
   const language = req.language;
   const products = getAllProducts(language);
@@ -42,7 +50,6 @@ app.get("/api/products", (req, res) => {
 app.get("/api/products/:slug", (req, res) => {
   const slug = req.params.slug;
   const language = req.language;
-
   const product = getProductBySlug(slug, language);
 
   if (!product) {

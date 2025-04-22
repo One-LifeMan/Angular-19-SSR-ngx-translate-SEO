@@ -13,3 +13,8 @@ export interface SeoOptions {
   jsonLd: JsonLdInput;
   params?: Record<string, string>;
 }
+
+export interface ProductDetailsParams {
+  name: string;
+  desc: string;
+}

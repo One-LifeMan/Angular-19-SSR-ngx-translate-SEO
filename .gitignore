@@ -40,3 +40,12 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+
+
+/public/images/apples.png
+/public/images/oranges.png
+/public/images/pears.png
+/public/images/placeholder.png
+/public/images/plums.png
+TODO.md

@@ -7,5 +7,20 @@
     "HOME": "home works!",
     "ABOUT": "about works!",
     "404": "Page not found"
+  },
+  "META": {
+    "HOME": {
+      "title": "Home | ASNTS",
+      "description": "This site is an attempt to find out if it is possible to use ngx-translate with Angular + SSR, and how it will affect SEO, and whether the pages will be indexed."
+    },
+    "ABOUT": {
+      "title": "About | ASNTS",
+      "description": "This is a test page about us."
+    },
+
+    "404": {
+      "title": "404 | ASNTS",
+      "description": "This page is not found."
+    }
   }
 }

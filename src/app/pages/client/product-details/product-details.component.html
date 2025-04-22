@@ -1,0 +1,44 @@
+<p>{{ "CONTENT.PRODUCT-DETAILS" | translate }}</p>
+
+@if (product) {
+  <section class="product">
+    <h1 class="product__title">{{ product.name }}</h1>
+    <div class="product__card">
+      <img
+        class="product__img"
+        alt="{{ product.name }}"
+        height="9"
+        ngSrc="{{ product.src || placeholderImg }}"
+        ngSrcset="200w, 400w, 600w"
+        placeholder
+        sizes="(max-width: 240px) 200px,
+              (max-width: 440px) 400px,
+              (max-width: 600px) 600px,
+              (max-width: 900px) 400px,
+              600px"
+        width="16"
+      />
+
+      <div class="product__content">
+        <dl class="product__params">
+          <div class="product__params-group">
+            <dt class="product__key">
+              <b>{{ "PRODUCT-DETAILS.PARAMS.PRICE" | translate }}</b>
+            </dt>
+            <dd class="product__value">{{ product.price | currency }}</dd>
+          </div>
+          <div class="product__params-group">
+            <dt class="product__key">
+              <b>{{ "PRODUCT-DETAILS.PARAMS.COLOR" | translate }}</b>
+            </dt>
+            <dd class="product__value">{{ product.color }}</dd>
+          </div>
+        </dl>
+        <h3 class="product__subtitle">{{ "PRODUCT-DETAILS.DESC" | translate }}</h3>
+        <p class="product__description">{{ product.description }}</p>
+      </div>
+    </div>
+  </section>
+} @else {
+  <span class="not-fund-message">{{ "PRODUCT-DETAILS.NOT-FOUND" | translate }}</span>
+}

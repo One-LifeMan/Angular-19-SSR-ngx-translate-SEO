@@ -1,4 +1,6 @@
 import bootstrap from "./main.server";
+import i18nextConfig from "./server/core/i18next-config";
+import { getAllProducts, getProductBySlug } from "./server/core/mock-data";
 import { APP_BASE_HREF } from "@angular/common";
 import { CommonEngine, isMainModule } from "@angular/ssr/node";
 import express from "express";
@@ -12,6 +14,8 @@ const indexHtml = join(serverDistFolder, "index.server.html");
 const app = express();
 const commonEngine = new CommonEngine();
 
+i18nextConfig(serverDistFolder, app);
+
 /**
  * Example Express Rest API endpoints can be defined here.
  * Uncomment and define endpoints as necessary.
@@ -23,6 +27,30 @@ const commonEngine = new CommonEngine();
  * });
  * ```
  */
+
+app.get("/", (req, res) => {
+  const lang = req.language;
+  res.redirect(301, `/${lang}`);
+});
+
+app.get("/api/products", (req, res) => {
+  const language = req.language;
+  const products = getAllProducts(language);
+  res.json(products);
+});
+
+app.get("/api/products/:slug", (req, res) => {
+  const slug = req.params.slug;
+  const language = req.language;
+
+  const product = getProductBySlug(slug, language);
+
+  if (!product) {
+    res.status(404).send(req.t(`messages:NOT_FOUND`, { replace: { slug } }));
+  } else {
+    res.json(product);
+  }
+});
 
 /**
  * Serve static files from /browser

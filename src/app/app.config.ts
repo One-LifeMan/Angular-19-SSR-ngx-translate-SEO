@@ -1,6 +1,6 @@
 import { routes } from "./app.routes";
 import { httpLoaderFactory, localizeLoaderFactory } from "./core/translate.config";
-import { Location } from "@angular/common";
+import { Location, provideCloudinaryLoader } from "@angular/common";
 import { HttpClient, provideHttpClient, withFetch } from "@angular/common/http";
 import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
 import { provideClientHydration, withEventReplay } from "@angular/platform-browser";
@@ -11,6 +11,7 @@ import {
   withLocalizeRouter,
 } from "@gilsdav/ngx-translate-router";
 import { provideTranslateService, TranslateLoader, TranslateService } from "@ngx-translate/core";
+import { environment } from "src/environments/environment";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -37,5 +38,6 @@ export const appConfig: ApplicationConfig = {
         deps: [HttpClient],
       },
     }),
+    provideCloudinaryLoader(environment.cloudinary),
   ],
 };

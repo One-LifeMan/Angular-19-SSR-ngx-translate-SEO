@@ -1,11 +1,14 @@
 {
   "NAV": {
     "HOME": "Home",
-    "ABOUT": "About"
+    "ABOUT": "About",
+    "PRODUCTS": "Products"
   },
   "CONTENT": {
     "HOME": "home works!",
     "ABOUT": "about works!",
+    "PRODUCTS": "products works!",
+    "PRODUCT-DETAILS": "product-details works!",
     "404": "Page not found"
   },
   "META": {
@@ -17,10 +20,28 @@
       "title": "About | ASNTS",
       "description": "This is a test page about us."
     },
-
+    "PRODUCTS": {
+      "title": "Products | ASNTS",
+      "description": "This is an example of a products page."
+    },
+    "PRODUCTS_DETAILS": {
+      "title": "{{name}} | ASNTS",
+      "description": "{{desc}}"
+    },
     "404": {
       "title": "404 | ASNTS",
       "description": "This page is not found."
     }
+  },
+  "BTNS": {
+    "DETAILS": "Details"
+  },
+  "PRODUCT-DETAILS": {
+    "DESC": "description",
+    "PARAMS": {
+      "PRICE": "price",
+      "COLOR": "color"
+    },
+    "NOT-FOUND": "Product not found"
   }
 }

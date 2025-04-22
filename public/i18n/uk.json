@@ -1,11 +1,14 @@
 {
   "NAV": {
     "HOME": "Головна",
-    "ABOUT": "Про нас"
+    "ABOUT": "Про нас",
+    "PRODUCTS": "Продукти"
   },
   "CONTENT": {
     "HOME": "home працює!",
     "ABOUT": "about працює!",
+    "PRODUCTS": "products працює!",
+    "PRODUCT-DETAILS": "product-details працює!",
     "404": "Сторінку не знайдено"
   },
   "META": {
@@ -17,9 +20,28 @@
       "title": "Про нас | ASNTS",
       "description": "Це тестова сторінка про нас."
     },
+    "PRODUCTS": {
+      "title": "Продукти | ASNTS",
+      "description": "Це приклад сторінки продуктів."
+    },
+    "PRODUCTS_DETAILS": {
+      "title": "{{name}} | ASNTS",
+      "description": "{{desc}}"
+    },
     "404": {
       "title": "404 | ASNTS",
       "description": "Ця сторінка не знайдена."
     }
+  },
+  "BTNS": {
+    "DETAILS": "Детальніше"
+  },
+  "PRODUCT-DETAILS": {
+    "DESC": "Опис",
+    "PARAMS": {
+      "PRICE": "ціна",
+      "COLOR": "колір"
+    },
+    "NOT-FOUND": "Продукт не знайдено"
   }
 }

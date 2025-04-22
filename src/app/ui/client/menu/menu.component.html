@@ -5,6 +5,7 @@
         class="nav__link"
         [routerLink]="['/' | localize]"
         [routerLinkActiveOptions]="{ exact: true }"
+        ariaCurrentWhenActive="page"
         routerLinkActive="active"
       >
         {{ "NAV.HOME" | translate }}
@@ -15,9 +16,21 @@
         class="nav__link"
         [routerLink]="['about' | localize]"
         [routerLinkActiveOptions]="{ exact: true }"
+        ariaCurrentWhenActive="page"
         routerLinkActive="active"
       >
         {{ "NAV.ABOUT" | translate }}
+      </a>
+    </li>
+    <li class="nav__item">
+      <a
+        class="nav__link"
+        [routerLink]="['products' | localize]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ariaCurrentWhenActive="page"
+        routerLinkActive="active"
+      >
+        {{ "NAV.PRODUCTS" | translate }}
       </a>
     </li>
   </ul>

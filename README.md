@@ -1522,6 +1522,22 @@ app.get("/sitemap.xml", (req, res) => {
 });
 ```
 
-<!--
-- [ ] create robot.txt
--->
+## Create robots.txt
+
+**Warning! This and other steps are done after deploying to render.com**
+
+```bash
+touch public/robots.txt
+```
+
+**public\robots.txt**
+
+```txt
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+
+Host: https://angular-19-ssr-ngx-translate-seo.onrender.com
+Sitemap: https://angular-19-ssr-ngx-translate-seo.onrender.com/sitemap.xml
+
+```

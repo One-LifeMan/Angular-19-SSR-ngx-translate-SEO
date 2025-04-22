@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+
+Host: https://angular-19-ssr-ngx-translate-seo.onrender.com
+Sitemap: https://angular-19-ssr-ngx-translate-seo.onrender.com/sitemap.xml

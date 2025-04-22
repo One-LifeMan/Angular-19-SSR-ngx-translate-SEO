@@ -53,6 +53,18 @@ importers:
       express:
         specifier: ^4.18.2
         version: 4.21.2
+      i18next:
+        specifier: ^25.0.0
+        version: 25.0.0(typescript@5.7.3)
+      i18next-fs-backend:
+        specifier: ^2.6.0
+        version: 2.6.0
+      i18next-http-middleware:
+        specifier: ^3.7.4
+        version: 3.7.4
+      ngx-cookie-service-ssr:
+        specifier: ^19.1.2
+        version: 19.1.2(3a6d983ff085b9229d4f74fcd8bfc393)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -3045,6 +3057,20 @@ packages:
     resolution: {integrity: sha512-Y93lCzHYgGWdrJ66yIktxiaGULYc6oGiABxhcO5AufBeOyoIdZF7bIfLaOrbM0iGIOXQQgxxRrFEnb+Y6w1n4A==}
     engines: {node: '>=10.18'}
 
+  i18next-fs-backend@2.6.0:
+    resolution: {integrity: sha512-3ZlhNoF9yxnM8pa8bWp5120/Ob6t4lVl1l/tbLmkml/ei3ud8IWySCHt2lrY5xWRlSU5D9IV2sm5bEbGuTqwTw==}
+
+  i18next-http-middleware@3.7.4:
+    resolution: {integrity: sha512-RANEF3XNpR5ExJryg3wKIycrPEYg7IdZiEvWFwb2lyDTwG5nB3AvhD5SfqRFT02Jbn8MHS5+xq7p4W+dX2ZJ8g==}
+
+  i18next@25.0.0:
+    resolution: {integrity: sha512-POPvwjOPR1GQvRnbikTMPEhQD+ekd186MHE6NtVxl3Lby+gPp0iq60eCqGrY6wfRnp1lejjFNu0EKs1afA322w==}
+    peerDependencies:
+      typescript: ^5
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -3667,6 +3693,13 @@ packages:
 
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+
+  ngx-cookie-service-ssr@19.1.2:
+    resolution: {integrity: sha512-gf3MZxmFxjUK3WXbfjNn6IJme9v/IGm9EOnwQxQXZULD1XKELcaeq6SEvX/a4MAWLOKngYz48mnPBDBxGMxx7w==}
+    peerDependencies:
+      '@angular/common': ^19.0.0
+      '@angular/core': ^19.0.0
+      '@angular/ssr': ^19.0.0
 
   node-addon-api@6.1.0:
     resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
@@ -8129,6 +8162,16 @@ snapshots:
 
   hyperdyperid@1.2.0: {}
 
+  i18next-fs-backend@2.6.0: {}
+
+  i18next-http-middleware@3.7.4: {}
+
+  i18next@25.0.0(typescript@5.7.3):
+    dependencies:
+      '@babel/runtime': 7.26.10
+    optionalDependencies:
+      typescript: 5.7.3
+
   iconv-lite@0.4.24:
     dependencies:
       safer-buffer: 2.1.2
@@ -8735,6 +8778,13 @@ snapshots:
   negotiator@1.0.0: {}
 
   neo-async@2.6.2: {}
+
+  ngx-cookie-service-ssr@19.1.2(3a6d983ff085b9229d4f74fcd8bfc393):
+    dependencies:
+      '@angular/common': 19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/core': 19.2.4(rxjs@7.8.2)(zone.js@0.15.0)
+      '@angular/ssr': 19.2.5(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-server@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/compiler@19.2.4)(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2))(@angular/router@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.4(@angular/common@19.2.4(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.4(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2))
+      tslib: 2.8.1
 
   node-addon-api@6.1.0:
     optional: true

@@ -40,6 +40,8 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
   - [4.7. Update translation files](#47-update-translation-files)
   - [4.8. Update routes](#48-update-routes)
 - [5. Create sitemap.xml](#5-create-sitemapxml)
+- [Create robots.txt](#create-robotstxt)
+- [Add Google Analytics](#add-google-analytics)
 
 This is the second part of the [Angular-19-SSR-ngx-translate
 ](https://github.com/One-LifeMan/Angular-19-SSR-ngx-translate) project. It repeats all the steps from the first part and adds new steps for SEO optimization (described below).
@@ -1540,4 +1542,43 @@ Disallow: /api/
 Host: https://angular-19-ssr-ngx-translate-seo.onrender.com
 Sitemap: https://angular-19-ssr-ngx-translate-seo.onrender.com/sitemap.xml
 
+```
+
+## Add Google Analytics
+
+Warning! You must insert YOUR code obtained from https://tagmanager.google.com
+
+**src\index.html**
+Add as close to the opening `<head>` tag as possible
+
+```html
+<!-- Google Tag Manager -->
+<script>
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != "dataLayer" ? "&l=" + l : "";
+    j.async = true;
+    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, "script", "dataLayer", "GTM-MLXC67XS");
+</script>
+<!-- End Google Tag Manager -->
+```
+
+Insert this code immediately after the opening <body> tag:
+
+```html
+<!-- Google Tag Manager (noscript) -->
+<noscript
+  ><iframe
+    src="https://www.googletagmanager.com/ns.html?id=GTM-MLXC67XS"
+    height="0"
+    style="display: none; visibility: hidden"
+    width="0"
+  ></iframe
+></noscript>
+<!-- End Google Tag Manager (noscript) -->
 ```

@@ -2,5 +2,5 @@ User-agent: *
 Disallow: /admin/
 Disallow: /api/
 
-Host: https://angular-19-ssr-ngx-translate-seo.onrender.com
-Sitemap: https://angular-19-ssr-ngx-translate-seo.onrender.com/sitemap.xml
+Host: https://angular-19-ssr-ngx-translate-seo-production.up.railway.app
+Sitemap: https://angular-19-ssr-ngx-translate-seo-production.up.railway.app/sitemap.xml

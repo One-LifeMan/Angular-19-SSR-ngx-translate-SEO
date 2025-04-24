@@ -1,7 +1,7 @@
 import bootstrap from "./main.server";
 import i18nextConfig from "./server/core/i18next-config";
-import { getAllProducts, getProductBySlug } from "./server/core/mock-data";
 import { getSitemap } from "./server/core/sitemap";
+import { getAllProducts, getProductBySlug } from "./server/mock/products.mock";
 import { APP_BASE_HREF } from "@angular/common";
 import { CommonEngine, isMainModule } from "@angular/ssr/node";
 import express from "express";

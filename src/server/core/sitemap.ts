@@ -1,4 +1,4 @@
-import { serverProducts } from "./mock-data";
+import { serverProducts } from "../mock/products.mock";
 import { environment } from "src/environments/environment";
 
 interface XmlUrl {

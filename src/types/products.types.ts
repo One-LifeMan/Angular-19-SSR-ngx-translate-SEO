@@ -5,6 +5,7 @@ export interface ServerProduct {
   name: Record<string, string>;
   slug: string;
   description: Record<string, string>;
+  shortDesc: Record<string, string>;
   metaDesc: Record<string, string>;
   price: number;
   color: string;
@@ -19,6 +20,7 @@ export interface Product {
   name: string;
   slug: string;
   description: string;
+  shortDesc: string;
   metaDesc: string;
   price: number;
   color: string;

@@ -28,6 +28,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin: 20px 0;
+}
+
 @media (hover: hover) {
   a:hover {
     color: var(--accent-color);

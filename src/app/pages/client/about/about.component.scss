@@ -1,0 +1,14 @@
+.about {
+  &__benefits {
+  }
+}
+
+.benefits {
+  &__list {
+    list-style-type: disc;
+  }
+
+  &__item {
+    margin-left: 20px;
+  }
+}

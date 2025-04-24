@@ -1,0 +1,14 @@
+.home {
+  &__benefits {
+  }
+}
+
+.benefits {
+  &__list {
+    list-style: circle;
+  }
+
+  &__item {
+    margin-left: 20px;
+  }
+}

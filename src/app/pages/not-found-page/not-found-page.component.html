@@ -1,1 +1,27 @@
-<p>{{ "CONTENT.404" | translate }}</p>
+<p>{{ "CONTENT.404_SHORT" | translate }}</p>
+
+<section class="not-found">
+  <div class="not-found__container">
+    <h1 class="not-found__heading">{{ "CONTENT.404.HEADING" | translate }}</h1>
+    <p class="not-found__description">
+      {{ "CONTENT.404.DESCRIPTION_PART1" | translate }}
+    </p>
+    <p>
+      {{ "CONTENT.404.DESCRIPTION_PART2" | translate }}
+      {{ "CONTENT.404.DESCRIPTION_PART3" | translate }}
+    </p>
+    <div class="not-found__actions">
+      <a class="btn btn-primary" [routerLink]="['/' | localize]">
+        {{ "CONTENT.404.GO_HOME" | translate }}
+      </a>
+      <a class="btn btn-secondary" [routerLink]="['/products' | localize]">
+        {{ "CONTENT.404.VIEW_PRODUCTS" | translate }}
+      </a>
+    </div>
+    <img
+      class="not-found__image"
+      src="/images/404.png"
+      alt="{{ 'CONTENT.404.IMAGE_ALT' | translate }}"
+    />
+  </div>
+</section>

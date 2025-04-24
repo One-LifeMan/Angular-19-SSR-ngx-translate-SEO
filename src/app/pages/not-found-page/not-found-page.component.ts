@@ -1,5 +1,7 @@
 import { Component, inject, OnInit, OnDestroy } from "@angular/core";
+import { RouterLink } from "@angular/router";
 import { Subject, takeUntil } from "@app/rxjs";
+import { LocalizeRouterPipe } from "@gilsdav/ngx-translate-router";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { SeoService } from "src/app/services/seo.service";
 import { JsonLdInput } from "src/types/jsonld.types";
@@ -7,7 +9,7 @@ import { SeoKeysEnum, SeoOptions } from "src/types/seo.types";
 
 @Component({
   selector: "app-not-found-page",
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, RouterLink, LocalizeRouterPipe],
   templateUrl: "./not-found-page.component.html",
   styleUrl: "./not-found-page.component.scss",
 })

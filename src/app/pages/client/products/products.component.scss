@@ -4,18 +4,28 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--gap-medium);
-    justify-content: space-evenly;
+    gap: var(--gap-large);
+    justify-content: center;
   }
 
   &__item {
+    position: relative;
+    width: 100%;
+    max-width: 200px;
+    height: 300px;
+    color: var(--on-secondary-color);
+    background-color: var(--secondary-color);
+    border-radius: var(--gap-medium);
+  }
+
+  &__item-inner {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--gap-medium);
     align-items: center;
-    max-width: 200px;
+    height: 100%;
     padding: var(--gap-medium);
-    color: var(--on-secondary-color);
     background-color: var(--secondary-color);
     border-radius: var(--gap-medium);
   }
@@ -32,28 +42,100 @@
     object-fit: cover;
   }
 
+  &__short-desc {
+    display: -webkit-box;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
   &__link {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     padding: var(--gap-medium);
+    margin-top: auto;
     color: var(--secondary-color);
     background-color: var(--on-secondary-color);
     border-radius: var(--gap-medium);
   }
 }
 
+.description {
+  &__title {
+    &::before {
+      content: "🌿";
+    }
+  }
+}
+
 @media screen and (width <= 460px) {
+  .products-intro {
+  }
+
   .products {
+    &__list {
+    }
+
     &__item {
       max-width: 100%;
+      height: fit-content;
+    }
+
+    &__item-inner {
+    }
+
+    &__title {
+    }
+
+    &__img {
+    }
+
+    &__short-desc {
+    }
+
+    &__link {
     }
   }
 }
 
 @media (hover: hover) {
+  .products-intro {
+  }
+
   .products {
+    &__list {
+    }
+
+    &__item:hover {
+      cursor: pointer;
+
+      .products__item-inner {
+        position: absolute;
+        z-index: 10;
+        height: auto;
+        box-shadow: 0 0 4px var(--on-primary-color);
+      }
+
+      .products__short-desc {
+        display: inline;
+        overflow: visible;
+        -webkit-line-clamp: initial;
+      }
+    }
+
+    &__title {
+    }
+
+    &__img {
+    }
+
+    &__short-desc {
+    }
+
     &__link:hover {
       background-color: var(--accent-color);
     }

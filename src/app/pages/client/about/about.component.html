@@ -1,1 +1,22 @@
-<p>{{ "CONTENT.ABOUT" | translate }}</p>
+<section class="about">
+  <h1>{{ "CONTENT.ABOUT.TITLE" | translate }}</h1>
+  <p>
+    {{ "CONTENT.ABOUT.INTRODUCTION" | translate }}
+  </p>
+  <p>
+    {{ "CONTENT.ABOUT.LOCALIZED_ROUTES" | translate }}
+  </p>
+  <div class="about__benefits benefits">
+    <p>
+      {{ "CONTENT.ABOUT.MAIN_GOAL" | translate }}
+    </p>
+    <ul class="benefits__list">
+      <li class="benefits__item">{{ "CONTENT.ABOUT.BENEFIT_STANDALONE" | translate }}</li>
+      <li class="benefits__item">{{ "CONTENT.ABOUT.BENEFIT_SSR" | translate }}</li>
+      <li class="benefits__item">{{ "CONTENT.ABOUT.BENEFIT_LOCALIZATION" | translate }}</li>
+    </ul>
+  </div>
+  <p>
+    {{ "CONTENT.ABOUT.CONCLUSION" | translate }}
+  </p>
+</section>

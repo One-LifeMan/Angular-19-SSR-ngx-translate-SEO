@@ -5,24 +5,69 @@
     "PRODUCTS": "Products"
   },
   "CONTENT": {
-    "HOME": "home works!",
-    "ABOUT": "about works!",
-    "PRODUCTS": "products works!",
-    "PRODUCT-DETAILS": "product-details works!",
-    "404": "Page not found"
+    "HOME": {
+      "TITLE": "Angular 19 with SSR, Multilingualism and SEO Optimization",
+      "WELCOME": "Welcome to the demo site built using Angular 19, server-side rendering (SSR), localization with ngx-translate and localized routes via @gilsdav/ngx-translate-router.",
+      "DESCRIPTION": "This example demonstrates how to build a modern, fast and multilingual website with great SEO support using Standalone Angular components without NgModules.",
+      "SSR_BENEFIT": "Thanks to SSR, this site loads quickly even on slow devices or networks, and proper localization helps users around the world get information in a language they understand.",
+      "BENEFITS_TITLE": "Benefits of this approach:",
+      "BENEFIT_SEO": "Better indexing in search engines",
+      "BENEFIT_MULTI_LANGUAGE": "Support for multiple languages ​​without reloading the page",
+      "BENEFIT_MODERN_STRUCTURE": "Modern structure using Standalone components"
+    },
+    "ABOUT": {
+      "TITLE": "About this Angular Demonstration Project",
+      "INTRODUCTION": "This site was created as an example of a modern web application using Angular 19 with full support for SSR (Server-Side Rendering), multilingualism (via ngx-translate), and SEO optimization.",
+      "LOCALIZED_ROUTES": "The project demonstrates how to create localized routes using the <code>@gilsdav/ngx-translate-router</code> library, which allows for SEO-friendly URLs in different languages.",
+      "MAIN_GOAL": "The main goal of this site is to showcase the best practices for developing Angular applications with:",
+      "BENEFIT_STANDALONE": "Standalone components (without NgModules)",
+      "BENEFIT_SSR": "SSR for improved performance and SEO",
+      "BENEFIT_LOCALIZATION": "Full localization of content and routes",
+      "CONCLUSION": "If you are an Angular developer looking to implement multilingualism and SEO in your application, this example will be an excellent starting point."
+    },
+    "PRODUCTS": {
+      "TITLE": "Our Products",
+      "DESCRIPTION_PART1": "Browse our demonstration list of products used to showcase the capabilities of Angular 19, SSR, multilingualism, and SEO optimization.",
+      "DESCRIPTION_PART2": "Each product leads to a separate dynamic page with updatable meta tags — an example of best practices in modern Angular development.",
+      "FEATURES": "The page supports localization, is optimized for search engine indexing, and is fully responsive for mobile devices.",
+      "SUBTITLE": "About our products",
+      "DESCRIPTION_PARAGRAPH_1": "We make sure that you get only the best. In our catalog you will find fresh, natural fruits grown with love and care for your health. Each product undergoes careful selection to meet high standards of quality and taste.",
+      "DESCRIPTION_PARAGRAPH_2": "By choosing our fruits, you choose benefits, taste and naturalness. From juicy apples to nutritious bananas - we offer only those products that we ourselves consume every day.",
+      "DESCRIPTION_PARAGRAPH_3": "Visit the pages of each product to learn more about their beneficial properties, methods of use and interesting facts. Make the right choice - make your diet brighter and healthier!"
+    },
+    "PRODUCT-DETAILS": {
+      "DESC": "description",
+      "PARAMS": {
+        "PRICE": "price",
+        "COLOR": "color"
+      },
+      "NOT-FOUND": "Product not found"
+    },
+    "404": {
+      "HEADING": "🙁 Oops! Page not found.",
+      "DESCRIPTION_PART1": "Sorry, but the page you are looking for does not exist or has been moved.",
+      "DESCRIPTION_PART2": "Perhaps you arrived here via a link that is no longer valid, or you typed the",
+      "DESCRIPTION_PART3": "URL incorrectly. Try returning to the homepage or browsing our popular sections.",
+      "GO_HOME": "Go to homepage",
+      "VIEW_PRODUCTS": "View products",
+      "IMAGE_ALT": "404 image"
+    },
+    "FOOTER": {
+      "COPYRIGHT": "All rights reserved"
+    }
   },
   "META": {
     "HOME": {
-      "title": "Home | ASNTS",
-      "description": "This site is an attempt to find out if it is possible to use ngx-translate with Angular + SSR, and how it will affect SEO, and whether the pages will be indexed."
+      "title": "Angular 19 with SSR, multilingualism and SEO | ASNTS",
+      "description": "Demo site built on Angular 19 using SSR, ngx-translate for localization and full SEO optimization. Modern approach with Standalone components."
     },
     "ABOUT": {
-      "title": "About | ASNTS",
-      "description": "This is a test page about us."
+      "title": "About Angular SSR, i18n and SEO project | ASNTS",
+      "description": "Learn more about the Angular demo project using SSR, multilingualism via ngx-translate, and SEO optimization for improved visibility in search engines."
     },
     "PRODUCTS": {
-      "title": "Products | ASNTS",
-      "description": "This is an example of a products page."
+      "title": "List of demonstration products | ASNTS",
+      "description": "Check out the list of demo products in Angular project with SSR, localization, and SEO optimization. Go to the details of each product."
     },
     "PRODUCTS_DETAILS": {
       "title": "{{name}} | ASNTS",
@@ -35,13 +80,5 @@
   },
   "BTNS": {
     "DETAILS": "Details"
-  },
-  "PRODUCT-DETAILS": {
-    "DESC": "description",
-    "PARAMS": {
-      "PRICE": "price",
-      "COLOR": "color"
-    },
-    "NOT-FOUND": "Product not found"
   }
 }

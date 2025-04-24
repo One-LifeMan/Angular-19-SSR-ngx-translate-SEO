@@ -1,24 +1,44 @@
-<p>{{ "CONTENT.PRODUCTS" | translate }}</p>
+<section class="products-intro">
+  <h1>{{ "CONTENT.PRODUCTS.TITLE" | translate }}</h1>
+  <p>
+    {{ "CONTENT.PRODUCTS.DESCRIPTION_PART1" | translate }}
+  </p>
+  <p>
+    {{ "CONTENT.PRODUCTS.DESCRIPTION_PART2" | translate }}
+  </p>
+  <p>
+    {{ "CONTENT.PRODUCTS.FEATURES" | translate }}
+  </p>
+</section>
 
 <section class="products">
   <ul class="products__list">
     @for (product of products$ | async; track product.id) {
-      <li class="products__item">
-        <h2 class="products__title">{{ product.name }}</h2>
-        <h3 class="products__title">Slug: {{ product.slug }}</h3>
-        <img
-          class="products__img"
-          alt="{{ product.name }}"
-          height="9"
-          ngSrc="{{ product.src || placeholderImg }}"
-          ngSrcset="200w, 400w"
-          sizes="(max-width: 460px) 400px, 200px"
-          width="16"
-        />
-        <a class="products__link" [routerLink]="['/products/' + product.slug | localize]">
-          {{ "BTNS.DETAILS" | translate }}
-        </a>
+      <li class="products__item" [routerLink]="['/products/' + product.slug | localize]">
+        <div class="products__item-inner">
+          <h2 class="products__title">{{ product.name }}</h2>
+          <img
+            class="products__img"
+            alt="{{ product.name }}"
+            height="9"
+            ngSrc="{{ product.src || placeholderImg }}"
+            ngSrcset="200w, 400w"
+            sizes="(max-width: 460px) 400px, 200px"
+            width="16"
+          />
+          <p class="products__short-desc">{{ product.shortDesc }}</p>
+          <a class="products__link" [routerLink]="['/products/' + product.slug | localize]">
+            {{ "BTNS.DETAILS" | translate }}
+          </a>
+        </div>
       </li>
     }
   </ul>
+</section>
+
+<section class="description">
+  <h2 class="description__title">{{ "CONTENT.PRODUCTS.SUBTITLE" | translate }}</h2>
+  <p>{{ "CONTENT.PRODUCTS.DESCRIPTION_PARAGRAPH_1" | translate }}</p>
+  <p>{{ "CONTENT.PRODUCTS.DESCRIPTION_PARAGRAPH_2" | translate }}</p>
+  <p>{{ "CONTENT.PRODUCTS.DESCRIPTION_PARAGRAPH_3" | translate }}</p>
 </section>

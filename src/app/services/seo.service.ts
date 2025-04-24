@@ -88,6 +88,7 @@ export class SeoService {
       "@type": jsonLd["@type"],
       datePublished: jsonLd.datePublished,
       dateModified: jsonLd.dateModified,
+      inLanguage: this.translate.currentLang,
     };
 
     if (jsonLd.offers) {
@@ -97,7 +98,7 @@ export class SeoService {
         priceCurrency: "USD",
         price: jsonLd.offers.price,
         availability: jsonLd.offers.availability,
-    };
+      };
 
       enrichedJsonLd = Object.assign(enrichedJsonLd, offers);
     }

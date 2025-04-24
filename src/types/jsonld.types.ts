@@ -47,4 +47,5 @@ export interface JsonLd {
   datePublished?: string;
   dateModified?: string;
   offers?: Offers;
+  inLanguage: string;
 }

@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { take } from "@app/rxjs";
 import { TranslateService } from "@ngx-translate/core";
 import { environment } from "src/environments/environment";
-import { JsonLd, JsonLdInput } from "src/types/jsonld.types";
+import { JsonLd, JsonLdInput, Offers } from "src/types/jsonld.types";
 import { SeoOptions } from "src/types/seo.types";
 
 interface TranslateResponse {
@@ -79,14 +79,28 @@ export class SeoService {
       "script[type='application/ld+json']#json-ld-script",
     );
 
-    const enrichedJsonLd: JsonLd = {
+    let enrichedJsonLd: JsonLd = {
       "@context": "https://schema.org",
       name: name,
       description: description,
       url: this.currentUrl,
       image: this.DEFAULT_IMAGE,
-      ...jsonLd,
+      "@type": jsonLd["@type"],
+      datePublished: jsonLd.datePublished,
+      dateModified: jsonLd.dateModified,
     };
+
+    if (jsonLd.offers) {
+      const offers: Offers = {
+        "@type": "Offer",
+        url: this.currentUrl,
+        priceCurrency: "USD",
+        price: jsonLd.offers.price,
+        availability: jsonLd.offers.availability,
+    };
+
+      enrichedJsonLd = Object.assign(enrichedJsonLd, offers);
+    }
 
     if (existingScript) {
       existingScript.textContent = JSON.stringify(enrichedJsonLd);

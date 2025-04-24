@@ -12,6 +12,7 @@ export const serverProducts: Array<ServerProduct> = [
     src: "v1744617529/apples_hd9yit.png",
     createdAt: new Date("2023-10-01T12:00:00Z").toISOString(),
     updatedAt: new Date("2023-10-01T12:00:00Z").toISOString(),
+    availability: "InStock",
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ export const serverProducts: Array<ServerProduct> = [
     src: "v1744617529/pears_g18zef.png",
     createdAt: new Date("2024-10-01T12:00:00Z").toISOString(),
     updatedAt: new Date("2024-10-01T12:00:00Z").toISOString(),
+    availability: "InStock",
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ export const serverProducts: Array<ServerProduct> = [
     src: "v1744617529/plums_nkpac0.png",
     createdAt: new Date("2025-03-01T12:00:00Z").toISOString(),
     updatedAt: new Date("2025-03-01T12:00:00Z").toISOString(),
+    availability: "InStock",
   },
   {
     id: 4,
@@ -48,6 +51,7 @@ export const serverProducts: Array<ServerProduct> = [
     src: "v1744617529/oranges_zy3pcb.png",
     createdAt: new Date("2025-04-01T12:00:00Z").toISOString(),
     updatedAt: new Date("2025-04-01T12:00:00Z").toISOString(),
+    availability: "InStock",
   },
   {
     id: 5,
@@ -59,6 +63,7 @@ export const serverProducts: Array<ServerProduct> = [
     color: "yellow",
     createdAt: new Date("2025-04-10T12:00:00Z").toISOString(),
     updatedAt: new Date("2025-04-10T12:00:00Z").toISOString(),
+    availability: "InStock",
     src: null,
   },
 ];

@@ -1,3 +1,5 @@
+import { AvailabilityKeys } from "./jsonld.types";
+
 export interface ServerProduct {
   id: number;
   name: Record<string, string>;
@@ -9,6 +11,7 @@ export interface ServerProduct {
   src: string | null;
   createdAt: string;
   updatedAt: string;
+  availability: AvailabilityKeys;
 }
 
 export interface Product {
@@ -22,4 +25,5 @@ export interface Product {
   src: string | null;
   createdAt: string;
   updatedAt: string;
+  availability: AvailabilityKeys;
 }

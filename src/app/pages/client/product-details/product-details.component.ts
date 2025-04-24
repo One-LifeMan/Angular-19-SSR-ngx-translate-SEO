@@ -49,6 +49,10 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           "@type": "Product",
           datePublished: product.createdAt,
           dateModified: product.updatedAt,
+          offers: {
+            price: product.price,
+            availability: product.availability,
+          },
         };
         if (product.src) {
           jsonLd.image = environment.cloudinary + product.src;

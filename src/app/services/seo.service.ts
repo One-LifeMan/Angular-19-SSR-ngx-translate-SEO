@@ -17,7 +17,7 @@ interface TranslateResponse {
   providedIn: "root",
 })
 export class SeoService {
-  private readonly DEFAULT_IMAGE = "/images/ng-image.jpg";
+  private readonly DEFAULT_IMAGE = `${environment.appUrl}images/ng-image.jpg`;
 
   private readonly document = inject(DOCUMENT);
   private readonly titleService = inject(Title);

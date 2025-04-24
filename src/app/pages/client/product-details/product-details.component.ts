@@ -55,7 +55,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           },
         };
         if (product.src) {
-          jsonLd.image = environment.cloudinary + product.src;
+          jsonLd.image = `${environment.cloudinary}/${product.src}`;
         }
         const params: ProductDetailsParams = { name: product.name, desc: product.metaDesc };
         const seoOptions: SeoOptions = {

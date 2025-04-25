@@ -28,7 +28,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   placeholderImg = environment.placeholderImg;
 
   ngOnInit(): void {
-    const jsonLd: JsonLdInput = { "@type": "CollectionPage" };
+    const jsonLd: JsonLdInput = {
+      "@type": "CollectionPage",
+      image: `${environment.appUrl}images/products-preview.png`,
+    };
     const seoOptions: SeoOptions = { key: SeoKeysEnum.Products, jsonLd };
 
     this.products$ = this.prodService.findAll();

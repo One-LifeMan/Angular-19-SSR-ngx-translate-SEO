@@ -74,7 +74,7 @@ app.get(
  * Handle all other requests by rendering the Angular application.
  */
 app.get("**", (req, res, next) => {
-  const { protocol, originalUrl, baseUrl, headers } = req;
+  const { protocol, originalUrl, baseUrl, headers, language } = req;
 
   commonEngine
     .render({
@@ -85,6 +85,13 @@ app.get("**", (req, res, next) => {
       providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
     })
     .then(html => {
+      const isProdDetails = /\/products\/[^/]+/.test(originalUrl);
+      if (isProdDetails) {
+        if (html.includes("app-not-found-page")) {
+          return res.redirect(`/${language}/404`);
+        }
+      }
+
       if (html.includes("app-not-found-page")) {
         return res.status(404).send(html);
       }

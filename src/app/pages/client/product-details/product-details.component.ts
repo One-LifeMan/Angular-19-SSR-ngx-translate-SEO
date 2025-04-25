@@ -1,6 +1,6 @@
 import { CurrencyPipe, NgOptimizedImage } from "@angular/common";
 import { Component, inject, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Subject, take, takeUntil } from "@app/rxjs";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { ProductsService } from "src/app/services/products.service";
@@ -22,6 +22,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   private readonly prodService = inject(ProductsService);
   private readonly seo = inject(SeoService);
   private readonly translate = inject(TranslateService);
+  private readonly router = inject(Router);
   placeholderImg = environment.placeholderImg;
   product: Product | null = null;
 
@@ -42,29 +43,34 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.prodService
       .findBySlug(slug)
       .pipe(take(1))
-      .subscribe(product => {
-        this.product = product;
+      .subscribe({
+        next: product => {
+          this.product = product;
 
-        const jsonLd: JsonLdInput = {
-          "@type": "Product",
-          datePublished: product.createdAt,
-          dateModified: product.updatedAt,
-          offers: {
-            price: product.price,
-            availability: product.availability,
-          },
-        };
-        if (product.src) {
-          jsonLd.image = `${environment.cloudinary}/${product.src}`;
-        }
-        const params: ProductDetailsParams = { name: product.name, desc: product.metaDesc };
-        const seoOptions: SeoOptions = {
-          key: SeoKeysEnum.ProductsDetails,
-          jsonLd,
-          params: { ...params },
-        };
+          const jsonLd: JsonLdInput = {
+            "@type": "Product",
+            datePublished: product.createdAt,
+            dateModified: product.updatedAt,
+            offers: {
+              price: product.price,
+              availability: product.availability,
+            },
+          };
+          if (product.src) {
+            jsonLd.image = `${environment.cloudinary}/${product.src}`;
+          }
+          const params: ProductDetailsParams = { name: product.name, desc: product.metaDesc };
+          const seoOptions: SeoOptions = {
+            key: SeoKeysEnum.ProductsDetails,
+            jsonLd,
+            params: { ...params },
+          };
 
-        this.seo.updateSeo(seoOptions);
+          this.seo.updateSeo(seoOptions);
+        },
+        error: () => {
+          this.router.navigate([this.translate.currentLang, "404"]);
+        },
       });
   }
 

@@ -84,7 +84,13 @@ app.get("**", (req, res, next) => {
       publicPath: browserDistFolder,
       providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
     })
-    .then(html => res.send(html))
+    .then(html => {
+      if (html.includes("app-not-found-page")) {
+        return res.status(404).send(html);
+      }
+
+      return res.send(html);
+    })
     .catch(err => next(err));
 });
 

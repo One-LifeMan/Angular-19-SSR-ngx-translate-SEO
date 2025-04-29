@@ -1,5 +1,9 @@
 import { serverProducts } from "../mock/products.mock";
+import dotenv from "dotenv";
+import { env } from "node:process";
 import { environment } from "src/environments/environment";
+
+dotenv.config();
 
 interface XmlUrl {
   loc: string;
@@ -26,7 +30,7 @@ export const getSitemap = () => {
 };
 
 export const generateSitemap = () => {
-  const hostname = environment.appUrl;
+  const hostname = env["baseUrl"];
 
   const pages: Array<XmlUrl> = [
     { loc: "/", lastmod: new Date("2025-04-10").toISOString() },

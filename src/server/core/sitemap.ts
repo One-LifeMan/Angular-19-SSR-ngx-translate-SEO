@@ -33,10 +33,10 @@ export const generateSitemap = () => {
   const hostname = env["baseUrl"];
 
   const pages: Array<XmlUrl> = [
-    { loc: "/", lastmod: new Date("2025-04-10").toISOString() },
-    { loc: "/about", lastmod: new Date("2025-04-10").toISOString() },
-    { loc: "/products", lastmod: new Date("2025-04-10").toISOString() },
-    { loc: "/404", lastmod: new Date("2025-04-10").toISOString() },
+    { loc: "/", lastmod: new Date("2025-04-25").toISOString() },
+    { loc: "/about", lastmod: new Date("2025-04-25").toISOString() },
+    { loc: "/products", lastmod: new Date("2025-04-25").toISOString() },
+    { loc: "/404", lastmod: new Date("2025-04-25").toISOString() },
   ];
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;

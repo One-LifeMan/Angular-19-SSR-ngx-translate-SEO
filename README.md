@@ -2,7 +2,7 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
 
-🌐 Available languages:
+🌐 <span>Available languages:
 
 - 🇺🇦 [Українська](README.uk.md)
 - 🇺🇸 [English](README.md)
@@ -40,8 +40,17 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
   - [4.7. Update translation files](#47-update-translation-files)
   - [4.8. Update routes](#48-update-routes)
 - [5. Create sitemap.xml](#5-create-sitemapxml)
-- [Create robots.txt](#create-robotstxt)
-- [Add Google Analytics](#add-google-analytics)
+- [6. Create robots.txt](#6-create-robotstxt)
+- [7. Add Google Analytics](#7-add-google-analytics)
+- [8. Next will be bug fixes and improvements to SEO and other aspects](#8-next-will-be-bug-fixes-and-improvements-to-seo-and-other-aspects)
+  - [8.1. Add "offers" and "inLanguage" fields for structured page description.](#81-add-offers-and-inlanguage-fields-for-structured-page-description)
+  - [8.2. Add more text](#82-add-more-text)
+  - [8.3. Add preview images for pages](#83-add-preview-images-for-pages)
+  - [8.4. FIX: return status code 404 for NotFound page](#84-fix-return-status-code-404-for-notfound-page)
+  - [8.5. FIX: redirect to a 404 page if the product is not found](#85-fix-redirect-to-a-404-page-if-the-product-is-not-found)
+  - [8.6. More](#86-more)
+- [9. Are pages with ngx-translate and SSR indexed?](#9-are-pages-with-ngx-translate-and-ssr-indexed)
+- [10. Useful links:](#10-useful-links)
 
 This is the second part of the [Angular-19-SSR-ngx-translate
 ](https://github.com/One-LifeMan/Angular-19-SSR-ngx-translate) project. It repeats all the steps from the first part and adds new steps for SEO optimization (described below).
@@ -211,7 +220,7 @@ To update meta tags, we will create the following method:
 **src\app\services\seo.service.ts**
 
 ```ts
-  private readonly DEFAULT_IMAGE = "/images/ng-image.jpg";
+  private readonly DEFAULT_IMAGE = `${environment.appUrl}images/ng-image.jpg`;
   private readonly titleService = inject(Title);
   private readonly meta = inject(Meta);
   private currentUrl = "";
@@ -515,7 +524,7 @@ Product - In this form, the data will be sent to the client.
 
 **Warning! This is a test project, so I will not use a database, but simply store an array of data on the server.**
 
-**src\server\core\mock-data.ts**
+**src\server\mock\products.mock.ts**
 
 ```ts
 import { Product, ServerProduct } from "src/types/products.types";
@@ -1144,7 +1153,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           dateModified: product.updatedAt,
         };
         if (product.src) {
-          jsonLd.image = environment.cloudinary + product.src;
+          jsonLd.image = `${environment.cloudinary}/${product.src}`;
         }
         const params: ProductDetailsParams = { name: product.name, desc: product.metaDesc };
         const seoOptions: SeoOptions = {
@@ -1447,7 +1456,7 @@ touch src/server/core/sitemap.ts
 ```
 
 ```ts
-import { serverProducts } from "./mock-data";
+import { serverProducts } from "../mock/products.mock";
 import { environment } from "src/environments/environment";
 
 interface XmlUrl {
@@ -1524,9 +1533,9 @@ app.get("/sitemap.xml", (req, res) => {
 });
 ```
 
-## Create robots.txt
+## 6. Create robots.txt
 
-**Warning! This and other steps are done after deploying to render.com**
+**Warning! This and other steps are done after deploying to ~~render.com~~ [railway.com](https://railway.com)**
 
 ```bash
 touch public/robots.txt
@@ -1539,12 +1548,12 @@ User-agent: *
 Disallow: /admin/
 Disallow: /api/
 
-Host: https://angular-19-ssr-ngx-translate-seo.onrender.com
-Sitemap: https://angular-19-ssr-ngx-translate-seo.onrender.com/sitemap.xml
+Host: https://angular-19-ssr-ngx-translate-seo-production.up.railway.app
+Sitemap: https://angular-19-ssr-ngx-translate-seo-production.up.railway.app/sitemap.xml
 
 ```
 
-## Add Google Analytics
+## 7. Add Google Analytics
 
 Warning! You must insert YOUR code obtained from https://tagmanager.google.com
 
@@ -1582,3 +1591,209 @@ Insert this code immediately after the opening <body> tag:
 ></noscript>
 <!-- End Google Tag Manager (noscript) -->
 ```
+
+## 8. Next will be bug fixes and improvements to SEO and other aspects
+
+It would be better to do this before deployment
+
+### 8.1. Add "offers" and "inLanguage" fields for structured page description.
+
+https://schema.org/offers
+
+**src\types\jsonld.types.ts**
+
+```ts
+export interface Availability {
+  InStock: "InStock";
+  OutOfStock: "OutOfStock";
+  PreOrder: "PreOrder";
+  Discontinued: "Discontinued";
+}
+
+export type AvailabilityKeys = keyof Availability;
+
+interface OffersInput {
+  price: number | string;
+  availability: AvailabilityKeys;
+}
+
+export interface Offers {
+  "@type": "Offer";
+  url: string;
+  priceCurrency: string;
+  price: number | string;
+  availability: AvailabilityKeys;
+}
+
+export interface JsonLdInput {
+  "@type": JsonLdKeys;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  offers?: OffersInput;
+}
+
+export interface JsonLd {
+  "@type": JsonLdKeys;
+  "@context": string;
+  image?: string;
+  name: string;
+  description: string;
+  url: string;
+  datePublished?: string;
+  dateModified?: string;
+  offers?: Offers;
+  inLanguage: string;
+}
+```
+
+**src\types\products.types.ts**
+
+```ts
+import { AvailabilityKeys } from "./jsonld.types";
+
+export interface ServerProduct {
+  ...
+  availability: AvailabilityKeys;
+}
+
+export interface Product {
+  ...
+  availability: AvailabilityKeys;
+}
+```
+
+You need to update the code that uses the following types: ServerProduct, Product, JsonLdInput, and JsonLd.
+
+### 8.2. Add more text
+
+More text has been added to each page for better indexing. Also added some styles, new translation lines. Added a new field "shortDesc" in products, the value of which is displayed on the "products" page.
+Nothing really important.
+
+All text and 404 page generated by AI
+
+### 8.3. Add preview images for pages
+
+**src\app\pages\client\home\home.component.ts**
+Replace this:
+
+```ts
+const jsonLd: JsonLdInput = { "@type": "WebSite" };
+```
+
+With this:
+
+```ts
+const jsonLd: JsonLdInput = {
+  "@type": "WebSite",
+  image: `${environment.appUrl}images/preview.png`,
+};
+```
+
+Repeat on other pages.
+
+### 8.4. FIX: return status code 404 for NotFound page
+
+**src\server.ts**
+
+```ts
+...
+app.get("**", (req, res, next) => {
+  const { protocol, originalUrl, baseUrl, headers } = req;
+
+  commonEngine
+    .render({
+      bootstrap,
+      documentFilePath: indexHtml,
+      url: `${protocol}://${headers.host}${originalUrl}`,
+      publicPath: browserDistFolder,
+      providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+    })
+    .then(html => {
+      if (html.includes("app-not-found-page")) {
+        return res.status(404).send(html);
+      }
+
+      return res.send(html);
+    })
+    .catch(err => next(err));
+});
+...
+```
+
+### 8.5. FIX: redirect to a 404 page if the product is not found
+
+**src\server.ts**
+
+```ts
+app.get("**", (req, res, next) => {
+  const { protocol, originalUrl, baseUrl, headers, language } = req;
+
+  commonEngine
+    .render({
+      bootstrap,
+      documentFilePath: indexHtml,
+      url: `${protocol}://${headers.host}${originalUrl}`,
+      publicPath: browserDistFolder,
+      providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+    })
+    .then(html => {
+      const isProdDetails = /\/products\/[^/]+/.test(originalUrl);
+      if (isProdDetails) {
+        if (html.includes("app-not-found-page")) {
+          return res.redirect(`/${language}/404`); // <---
+        }
+      }
+
+      if (html.includes("app-not-found-page")) {
+        return res.status(404).send(html);
+      }
+
+      return res.send(html);
+    })
+    .catch(err => next(err));
+});
+```
+
+**src\app\pages\client\product-details\product-details.component.ts**
+
+```ts
+private getProductDetails(slug: string): void {
+    this.prodService
+      .findBySlug(slug)
+      .pipe(take(1))
+      .subscribe({
+        next: product => {
+          ...
+        },
+        error: () => {
+          this.router.navigate([this.translate.currentLang, "404"]); // <---
+        },
+      });
+  }
+```
+
+I understand that this is a strange decision, but I don't have enough rivets for more. 😵
+
+### 8.6. More
+
+Of course, you can always add something, improve something, change something. You could add Keywords, Canonical, Robots Tag.. describe the schemas for structured data in more detail, but in my opinion, this is enough for a test project.
+
+At the moment, I am not a cool developer who can show someone how to make super projects for production. I myself am still learning and trying to understand different technologies, understand what and how works and what does not work. And this is quite difficult to do when one "senior" says - this works, and another says - no, this does not work. Who to believe? All that remains is to take and do similar projects and find out for yourself where the truth is. Yes, I am convinced that this project has a lot of errors, bad practices, a terrible "readme", but this project was a good practice for me and it will answer the question: Are pages with ngx-translate and SSR indexed?
+
+## 9. Are pages with ngx-translate and SSR indexed?
+
+My answer is yes. Right now, while I haven't pushed any commits with new page text, Google has already indexed two pages.
+![asnts-search.png](readme-images/asnts-search.png)
+Let's see what happens when I push all the changes starting with [Next will be bug fixes and improvements to SEO and other aspects](#next-will-be-bug-fixes-and-improvements-to-seo-and-other-aspects).
+
+**waiting... the answer will appear here later**
+
+## 10. Useful links:
+
+- [Google Tag Manager](https://tagmanager.google.com/)
+- [Google Analytics](https://analytics.google.com/analytics)
+- [Google Search Console](https://search.google.com/search-console/welcome)
+- [Checking advanced results](https://search.google.com/test/rich-results)
+- [SEO META in 1 CLICK](https://chromewebstore.google.com/detail/seo-meta-in-1-click/bjogjfinolnhfhkbipphpdlldadpnmhc)
+- [Lighthouse](https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=uk)

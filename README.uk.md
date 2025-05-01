@@ -1,83 +1,38 @@
 # Angular + SSR + Ngx-translate + SEO <!-- omit in toc -->
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+Цей проєкт було створено за допомогою [Angular CLI](https://github.com/angular/angular-cli) версії 19.2.5.
 
-<p style="color:orange">This is not a how-to guide on how to create websites!
-This is just a step-by-step list of the steps I took while creating this test project!</p>
+<p style="color:orange">Це не інструкція того як потрібно створювати сайти!
+Це просто покроковий перелік дій які я робив під час створення цього тестового проекту!</p>
 
-At the moment, I am not a cool developer who can show someone how to make super projects for production. I myself am still learning and trying to understand different technologies, understand what and how works and what does not work. And this is quite difficult to do when one "senior" says - this works, and another says - no, this does not work. Who to believe? All that remains is to take and do similar projects and find out for yourself where the truth is. Yes, I am convinced that this project has a lot of errors, bad practices, a terrible "readme", but this project was a good practice for me and it will answer the question: Are pages with ngx-translate and SSR indexed?
+На даний момент я не крутий розробник, який може показати комусь, як робити проекти для продакшену. Я сам ще навчаюся і намагаюся розібратися в різних технологіях, зрозуміти, що і як працює, а що ні. І це досить складно зробити, коли один "senior" каже - це працює, а інший каже - ні, це не працює. Кому вірити? Залишається лише взяти і зробити подібні проекти і самостійно з'ясувати, де правда. Так, я переконаний, що в цьому проекті багато помилок, поганих практик, жахливий "readme", але цей проект був для мене гарною практикою і він дасть відповідь на питання: чи індексуються сторінки з ngx-translate та SSR?
 
-🌐 Available languages:
+🌐 Доступні мови:
 
 - 🇺🇦 [Українська](README.uk.md)
 - 🇺🇸 [English](README.md)
 
-## Intro<!-- omit in toc -->
+## Вступ<!-- omit in toc -->
 
-This is the second part of the [Angular-19-SSR-ngx-translate
-](https://github.com/One-LifeMan/Angular-19-SSR-ngx-translate) project, building upon the first part to incorporate SEO optimization techniques.
+Це друга частина проєкту [Angular-19-SSR-ngx-translate
+](https://github.com/One-LifeMan/Angular-19-SSR-ngx-translate), що базується на першій частині та включає методи SEO-оптимізації.
 
-This part covers essential SEO elements, including:
+Ця частина охоплює основні елементи SEO, зокрема:
 
 - Favicons
-- Meta tags
-- Structured data
+- Метатеги
+- Структуровані дані
 - sitemap.xml
 - robots.txt
-- Google Analytics integration
+- Інтеграція з Google Analytics
 
-**Table of contents:** <!-- omit in toc -->
-
-- [1. Favicons](#1-favicons)
-  - [1.1. Create favicons](#11-create-favicons)
-  - [1.2. Update index.html](#12-update-indexhtml)
-  - [1.3. Add site.webmanifest](#13-add-sitewebmanifest)
-- [2. SEO service](#2-seo-service)
-  - [2.1. Create SEO service](#21-create-seo-service)
-  - [2.2. Update global attribute - lang](#22-update-global-attribute---lang)
-  - [2.3. Update meta tags](#23-update-meta-tags)
-  - [2.4. Add and update structured data:](#24-add-and-update-structured-data)
-  - [2.5. Create method updateSeo](#25-create-method-updateseo)
-- [3. Update pages](#3-update-pages)
-  - [3.1. Update translation files](#31-update-translation-files)
-- [4. Add pages with dynamic data](#4-add-pages-with-dynamic-data)
-  - [4.1. Create data](#41-create-data)
-  - [4.2. Configuring i18next on the server](#42-configuring-i18next-on-the-server)
-    - [4.2.1. Installing dependencies](#421-installing-dependencies)
-    - [4.2.2. Create a configuration file](#422-create-a-configuration-file)
-    - [4.2.3. Add translation files for i18next](#423-add-translation-files-for-i18next)
-    - [4.2.4. Import and "connect" our i18next configuration](#424-import-and-connect-our-i18next-configuration)
-    - [4.2.5. Request settings](#425-request-settings)
-    - [4.2.6. Update cookies when changing language](#426-update-cookies-when-changing-language)
-    - [4.2.7. Update package.json](#427-update-packagejson)
-  - [4.3. Create ProductsService](#43-create-productsservice)
-  - [4.4. Configure Cloudinary](#44-configure-cloudinary)
-    - [4.4.1. Update environments](#441-update-environments)
-    - [4.4.2. Update app.config.ts](#442-update-appconfigts)
-  - [4.5. Create products page](#45-create-products-page)
-  - [4.6. Create product details page](#46-create-product-details-page)
-  - [4.7. Update translation files](#47-update-translation-files)
-  - [4.8. Update routes](#48-update-routes)
-- [5. Create sitemap.xml](#5-create-sitemapxml)
-- [6. Create robots.txt](#6-create-robotstxt)
-- [7. Add Google Analytics](#7-add-google-analytics)
-- [8. Next will be bug fixes and improvements to SEO and other aspects](#8-next-will-be-bug-fixes-and-improvements-to-seo-and-other-aspects)
-  - [8.1. Add "offers" and "inLanguage" fields for structured page description.](#81-add-offers-and-inlanguage-fields-for-structured-page-description)
-  - [8.2. Add more text](#82-add-more-text)
-  - [8.3. Add preview images for pages](#83-add-preview-images-for-pages)
-  - [8.4. FIX: return status code 404 for NotFound page](#84-fix-return-status-code-404-for-notfound-page)
-  - [8.5. FIX: redirect to a 404 page if the product is not found](#85-fix-redirect-to-a-404-page-if-the-product-is-not-found)
-  - [8.6. More](#86-more)
-- [9. Are pages with ngx-translate and SSR indexed?](#9-are-pages-with-ngx-translate-and-ssr-indexed)
-- [10. 5 days later](#10-5-days-later)
-- [11. Epilogue](#11-epilogue)
-- [12. Useful links:](#12-useful-links)
+**Зміст:** <!-- omit in toc -->
 
 ## 1. Favicons
 
-### 1.1. Create favicons
+### 1.1. Створити фавіконки
 
-There are various favicon generators and recommendations for formats and sizes. This project uses the following configuration:
+Існують різні генератори фавіконок та рекомендації щодо форматів і розмірів. У цьому проєкті використовується така конфігурація:
 
 <!-- prettier-ignore -->
 ```md
@@ -96,7 +51,7 @@ There are various favicon generators and recommendations for formats and sizes. 
   └── site.webmanifest
 ```
 
-### 1.2. Update index.html
+### 1.2. Оновити index.html
 
 **src\index.html**
 
@@ -116,14 +71,14 @@ There are various favicon generators and recommendations for formats and sizes. 
 <meta name="theme-color" content="#191919" media="(prefers-color-scheme: dark)" />
 ```
 
-### 1.3. Add site.webmanifest
+### 1.3. Додати site.webmanifest
 
 ```bash
 touch public/site.webmanifest
 ```
 
-Customize site.webmanifest however you like. I have it like this:
-More information about webmanifest at [W3C spec](https://www.w3.org/TR/appmanifest/)
+Налаштуйте site.webmanifest як завгодно. У мене це так:
+Більше інформації про webmanifest на [W3C spec](https://www.w3.org/TR/appmanifest/)
 
 **public\site.webmanifest**
 
@@ -202,21 +157,21 @@ More information about webmanifest at [W3C spec](https://www.w3.org/TR/appmanife
 }
 ```
 
-## 2. SEO service
+## 2. SEO сервіс
 
-**Important Disclaimer:**
+**Важливе застереження:**
 
-I am relatively new to SEO, and my understanding is still developing. The following implementation provides a basic example and should not be considered a comprehensive guide to SEO best practices. It demonstrates fundamental techniques for this project's specific needs. For in-depth SEO knowledge, consult specialized resources and experts.
+Я новачок у SEO, і моє розуміння все ще розвивається. Наведена нижче реалізація є базовим прикладом і не повинна розглядатися як вичерпний посібник з найкращих практик SEO. Вона демонструє фундаментальні методи для конкретних потреб цього проєкту. Щоб отримати глибокі знання про SEO, зверніться до спеціалізованих ресурсів та експертів.
 
-### 2.1. Create SEO service
+### 2.1. Створити SEO сервіс
 
 ```bash
 ng g s services/seo
 ```
 
-### 2.2. Update global attribute - lang
+### 2.2. Оновити глобальний атрибут - lang
 
-Let's create the following method in the seo service:
+Створимо наступний метод у сервісі SEO:
 
 **src\app\services\seo.service.ts**
 
@@ -234,9 +189,9 @@ export class SeoService {
 }
 ```
 
-### 2.3. Update meta tags
+### 2.3. Оновити метатеги
 
-To update meta tags, we will create the following method:
+Щоб оновити метатеги, ми створимо наступний метод:
 **src\app\services\seo.service.ts**
 
 ```ts
@@ -264,7 +219,7 @@ To update meta tags, we will create the following method:
   }
 ```
 
-To get the currentUrl value, we will create a method:
+Щоб отримати значення currentUrl, ми створимо метод:
 
 ```ts
   private readonly router = inject(Router);
@@ -278,11 +233,11 @@ To get the currentUrl value, we will create a method:
   }
 ```
 
-### 2.4. Add and update structured data:
+### 2.4. Додати та оновлювати структуровані дані:
 
-Structured data helps search engines understand the content of your pages.
+Структуровані дані допомагають пошуковим системам зрозуміти вміст ваших сторінок.
 
-You can learn more about this here: [schema.org](https://schema.org/docs/documents.html)
+Більше про це можна дізнатись тут: [schema.org](https://schema.org/docs/documents.html)
 
 ```bash
 touch src/types/jsonld.types.ts
@@ -326,7 +281,7 @@ export interface JsonLd extends JsonLdInput {
   }
 ```
 
-It seems `Renderer2` doesn't work on the server side. Therefore, I had to do it through `RendererFactory2`.
+Схоже, що `Renderer2` не працює на стороні сервера. Тому мені довелося зробити це через `RendererFactory2`.
 
 **src\app\services\seo.service.ts**
 
@@ -361,9 +316,9 @@ It seems `Renderer2` doesn't work on the server side. Therefore, I had to do it 
   }
 ```
 
-### 2.5. Create method updateSeo
+### 2.5. Створення методу updateSeo
 
-All the methods that were created before this are private. Therefore, we need another public method, which we will use.
+Усі методи, створені до цього, є приватними. Тому нам потрібен ще один публічний метод, який ми й використовуватимемо.
 
 ```bash
 touch src/types/seo.types.ts
@@ -412,12 +367,12 @@ updateSeo(options: SeoOptions) {
   }
 ```
 
-The updateSeo method accepts an object containing:
-`key` - which serves as a key to search for translated strings;
-`jsonLd` - an object with data to create a script with structured data;
-`params` (optional) - an object containing parameter values ​​for interpolation in translated strings. We will need it a little later;
+Метод updateSeo приймає об'єкт, що містить:
+`key` - який служить ключем для пошуку перекладених рядків;
+`jsonLd` - об'єкт з даними для створення скрипта зі структурованими даними;
+`params` (необов'язково) - об'єкт, що містить значення параметрів для інтерполяції в перекладених рядках. Він нам знадобиться трохи пізніше;
 
-## 3. Update pages
+## 3. Оновити сторінки
 
 **src\types\seo.types.ts**
 
@@ -463,11 +418,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 }
 ```
 
-We run the `seo.updateSeo` method during component initialization, as well as when changing the language - so that meta tags and other data are in the current language.
+Ми запускаємо метод `seo.updateSeo` під час ініціалізації компонента, а також під час зміни мови — щоб метатеги та інші дані були поточною мовою.
 
-This needs to be repeated in AboutComponent and NotFoundPageComponent.
+Це потрібно повторити в AboutComponent та NotFoundPageComponent.
 
-### 3.1. Update translation files
+### 3.1. Оновити файли перекладу
 
 **public\i18n\en.json**
 
@@ -507,9 +462,9 @@ This needs to be repeated in AboutComponent and NotFoundPageComponent.
   },
 ```
 
-## 4. Add pages with dynamic data
+## 4. Додати сторінки з динамічними даними
 
-### 4.1. Create data
+### 4.1. Створити дані
 
 **src\types\products.types.ts**
 
@@ -541,10 +496,10 @@ export interface Product {
 }
 ```
 
-ServerProduct - in this form the data is stored on the server;
-Product - in this form it is sent to the client;
+ServerProduct - у цьому вигляді дані зберігаються на сервері;
+Product - у цьому вигляді відправляються на клієнт;
 
-**Warning! This is a test project, so I will not use a database, but simply store an array of data on the server.**
+**Увага! Це тестовий проєкт, тому я не використовуватиму базу даних, а просто зберігатиму масив даних на сервері.**
 
 **src\server\mock\products.mock.ts**
 
@@ -615,7 +570,7 @@ export const serverProducts: Array<ServerProduct> = [
 ];
 ```
 
-We will also immediately add methods for getting all products and for getting one specific product.
+Також одразу додамо методи для отримання всіх продуктів та для отримання одного конкретного продукту.
 
 ```ts
 export const getAllProducts = (language: string) => {
@@ -649,23 +604,24 @@ export const getProductBySlug = (slug: string, language: string) => {
 };
 ```
 
-As we can see, some fields in products have translations ( name, description, metaDesc ).
-There are two options:
+Як бачимо, деякі поля в продуктах мають переклади (назва, опис, метаопис).
+Є два варіанти:
 
-- you can send data with all translations and already on the client display information in the desired language.
-- send data in one language that the user is currently using.
+- можна надсилати дані з усіма перекладами та вже на клієнті відображати інформацію потрібною мовою.
 
-Each of the options has advantages and disadvantages. I chose the second option to touch on another topic - obtaining the user's language on the server.
+- надсилати дані однією мовою, яку користувач наразі використовує.
 
-### 4.2. Configuring i18next on the server
+Кожен з варіантів має переваги та недоліки. Я обрав другий варіант, щоб торкнутися іншої теми - отримання мови користувача на сервері.
 
-#### 4.2.1. Installing dependencies
+### 4.2. Налаштувати i18next на сервері
+
+#### 4.2.1. Встановити залежності
 
 ```bash
 pnpm add i18next i18next-fs-backend i18next-http-middleware
 ```
 
-#### 4.2.2. Create a configuration file
+#### 4.2.2. Створити конфігураційний файл
 
 ```bash
 touch src/server/core/i18next-config.ts
@@ -717,14 +673,14 @@ const i18nextConfig = (serverDistFolder: string, app: Express) => {
 export default i18nextConfig;
 ```
 
-Read more about settings in the official documentation:
+Більше про налаштування читайте в офіційній документації:
 [i18next](https://www.i18next.com/)
 [i18next-fs-backend](https://github.com/i18next/i18next-fs-backend)
 [i18next-http-middleware](https://github.com/i18next/i18next-http-middleware)
 
-**Warning! In my opinion, the `load: "languageOnly"` property in `i18nextOptions` does not work, so in `detectorOptions` I added `convertDetectedLanguage: lng => lng.split("-")[0]` to get 'en' from 'en-US'.**
+**Попередження! На мою думку, властивість `load: "languageOnly"` в `i18nextOptions` не працює, тому в `detectorOptions` я додав `convertDetectedLanguage: lng => lng.split("-")[0]`, щоб отримати 'en' з 'en-US'.**
 
-#### 4.2.3. Add translation files for i18next
+#### 4.2.3. Додати файли перекладів для i18next
 
 ```bash
 mkdir src/server/locales
@@ -750,7 +706,7 @@ touch src/server/locales/uk/messages.json
 }
 ```
 
-#### 4.2.4. Import and "connect" our i18next configuration
+#### 4.2.4. Імпорт та підключення конфігурації i18next
 
 **src\server.ts**
 
@@ -762,12 +718,10 @@ import i18nextConfig from "./server/core/i18next-config";
 i18nextConfig(serverDistFolder, app);
 ```
 
-#### 4.2.5. Request settings
+#### 4.2.5. Налаштувати запити
 
-Returning to ngx-translate and ngx-translate-router:
-Let's imagine a situation: the user first visits the site via the link `http://localhost:4000` (i.e. the language is not specified), the page should be generated on the server, BUT! what language should `ngx-translate` choose? The one that `ngx-translate-router` will transfer, but `ngx-translate-router` in our case cannot determine the language since the server does not have access to localStorage, and the language was not passed in the url. Therefore, the default language will be used, in our case "en". But after the page is loaded in the browser, `ngx-translate-router` will detect the language from localStorage, or the browser (in our case it is "uk"), transfer it to `ngx-translate`, and it in turn will load the file with translations and update the text on the page. This is bad. We need the user to immediately receive the page in his language.
-We can already determine the user's language on the server since we configured i18next. All we have to do is pass it to `ngx-translate-router` and to do this we will make a simple request:
-
+Повертаючись до ngx-translate та ngx-translate-router:
+Уявімо ситуацію: користувач спочатку відвідує сайт за посиланням `http://localhost:4000` (тобто мова не вказана), сторінка має бути згенерована на сервері, АЛЕ! яку мову має обрати `ngx-translate`? Ту, яку передасть `ngx-translate-router`, але `ngx-translate-router` у нашому випадку не може визначити мову, оскільки сервер не має доступу до localStorage, а мова не була передана в url. Тому буде використана мова за замовчуванням, у нашому випадку "en". Але після завантаження сторінки в браузері `ngx-translate-router` визначить мову з localStorage, або браузера (у нашому випадку це "uk"), передасть її до `ngx-translate`, а той у свою чергу завантажить файл з перекладами та оновить текст на сторінці. Це погано. Нам потрібно, щоб користувач одразу отримав сторінку своєю мовою. Ми вже можемо визначити мову користувача на сервері, оскільки ми налаштували i18next. Все, що нам потрібно зробити, це передати її до `ngx-translate-router`, і для цього ми зробимо простий запит:
 **src\server.ts**
 
 ```ts
@@ -777,7 +731,7 @@ app.get("/", (req, res) => {
 });
 ```
 
-Let's add two more queries that return product data:
+Додамо ще два запити, які повертають продукти:
 
 **src\server.ts**
 
@@ -802,17 +756,17 @@ app.get("/api/products/:slug", (req, res) => {
 });
 ```
 
-#### 4.2.6. Update cookies when changing language
+#### 4.2.6. Оновити файли cookie під час зміни мови
 
-Another important point is that i18next (more precisely i18next-http-middleware) stores the language in a "cookie" with the key "i18next" and if it cannot get the language from "path" or "querystring", then it will try to get the language from the "cookie". BUT! When the user changes the language on the site (in our case, the "LanguageSwitcherComponent" is responsible for this), then ngx-translate-router stores/updates the data in localStorage with the key "LOCALIZE_DEFAULT_LANGUAGE", but the language in the "cookie" will not change! And therefore, in certain cases, i18next and ngx-translate-router may consider the current language as two different languages. Therefore, it is necessary to update the language in the "cookie" when the user changes the language. Let's do this.
+Ще один важливий момент полягає в тому, що i18next (точніше i18next-http-middleware) зберігає мову в "cookie" з ключем "i18next", і якщо він не може отримати мову з "path" або "querystring", то він спробує отримати мову з "cookie". АЛЕ! Коли користувач змінює мову на сайті (у нашому випадку за це відповідає "LanguageSwitcherComponent"), то ngx-translate-router зберігає/оновлює дані в localStorage з ключем "LOCALIZE_DEFAULT_LANGUAGE", але мова в "cookie" не зміниться! І тому, в певних випадках, i18next та ngx-translate-router можуть розглядати поточну мову як дві різні мови. Тому необхідно оновлювати мову в "cookie", коли користувач змінює мову. Давайте зробимо це.
 
-**Install a package for convenient work with cookies**
+**Встановити пакет для зручної роботи з файлами cookie**
 
 ```bash
 pnpm add ngx-cookie-service-ssr
 ```
 
-Actually, there is also a regular version: `ngx-cookie-service` - without SSR support. Considering that we will only use this library in the browser, it could have been installed, but I decided to install the SSR version.
+Власне, існує також звичайна версія: `ngx-cookie-service` — без підтримки SSR. Враховуючи, що ми будемо використовувати цю бібліотеку лише в браузері, можна було б встановити її, але я вирішив встановити SSR-версію.
 
 **src\app\app.component.ts**
 
@@ -844,9 +798,9 @@ export class AppComponent {
 }
 ```
 
-#### 4.2.7. Update package.json
+#### 4.2.7. Оновити package.json
 
-It is worth adding a "postbuild" script to automatically copy the `src/server/locales` folder to `dist/angular-ssr-ngx-translate/server/` after executing "build".
+Варто додати скрипт "postbuild" для автоматичного копіювання теки `src/server/locales` до `dist/angular-ssr-ngx-translate/server/` після виконання "build".
 
 ```json
 {
@@ -860,7 +814,7 @@ It is worth adding a "postbuild" script to automatically copy the `src/server/lo
 }
 ```
 
-### 4.3. Create ProductsService
+### 4.3. Створити ProductsService
 
 ```bash
 ng g s services/products
@@ -900,20 +854,22 @@ export class ProductsService {
 
 **Why do I pass the language in params?**
 
-Because if we go to a direct link, for example: `http://localhost:4000/uk/products/apple`, the page will be generated on the server side, and accordingly the `findBySlug("apple")` query will be executed on the server side, and in this case `i18next-http-middleware` cannot detect the language and sets the default language.
+**Чому я передаю мову в параметрах?**
 
-At the same time, if we go from another page `http://localhost:4000/uk/products` => `http://localhost:4000/uk/products/apple`, then everything will be fine, since the request was made in the browser, not on the server side.
+Тому що якщо ми перейдемо за прямим посиланням, наприклад: `http://localhost:4000/uk/products/apple`, сторінка буде згенерована на стороні сервера, і відповідно запит `findBySlug("apple")` буде виконано на стороні сервера, і в цьому випадку `i18next-http-middleware` не зможе визначити мову та встановить мову за замовчуванням.
 
-Note: An HTTP Interceptor could automate the addition of the language parameter to requests. See the Angular documentation for more information: [More about Interceptors](https://angular.dev/guide/http/interceptors)
+Водночас, якщо ми перейдемо з іншої сторінки `http://localhost:4000/uk/products` => `http://localhost:4000/uk/products/apple`, то все буде добре, оскільки запит було зроблено в браузері, а не на стороні сервера.
 
-### 4.4. Configure Cloudinary
+Примітка: HTTP-перехоплювач може автоматизувати додавання параметра мови до запитів. Дивіться документацію Angular для отримання додаткової інформації: [Докладніше про перехоплювачі](https://angular.dev/guide/http/interceptors)
 
-The image needs to be stored somewhere. I chose the service https://cloudinary.com
-You may have noticed that the `ServerProduct` and `Product` data have `src` fields with similar values: "v1744617529/apples_hd9yit.png". These are the names of the images. More precisely, "v1744617529" is the folder on cloudinary where the image is located, and "apples_hd9yit.png" is the name itself.
+### 4.4. Налаштувати Cloudinary
 
-To use this service, we will do the following:
+Зображення потрібно десь зберігати. Я обрав сервіс https://cloudinary.com
+Ви могли помітити, що дані `ServerProduct` та `Product` мають поля `src` з подібними значеннями: "v1744617529/apples_hd9yit.png". Це назви зображень. Точніше, "v1744617529" – це тека на cloudinary, в якій знаходиться зображення, а "apples_hd9yit.png" – це сама назва.
 
-#### 4.4.1. Update environments
+Щоб скористатися цим сервісом, зробимо наступне:
+
+#### 4.4.1. Оновити середовища
 
 **src\environments\environment.ts**
 **src\environments\environment.watch.ts**
@@ -925,12 +881,12 @@ To use this service, we will do the following:
 
 ```
 
-#### 4.4.2. Update app.config.ts
+#### 4.4.2. Оновити app.config.ts
 
-Warning! Since I will be using NgOptimizedImage, I need to add provideCloudinaryLoader.
-If you are using another service, check if it supports NgOptimizedImage.
-[More about NgOptimizedImage](https://angular.dev/guide/image-optimization)
-[More about supported services](https://angular.dev/guide/image-optimization#configuring-an-image-loader-for-ngoptimizedimage)
+Увага! Оскільки я використовуватиму NgOptimizedImage, мені потрібно додати provideCloudinaryLoader.
+Якщо ви використовуєте інший сервіс, перевірте, чи підтримує він NgOptimizedImage.
+[Детальніше про NgOptimizedImage](https://angular.dev/guide/image-optimization)
+[Детальніше про підтримувані сервіси](https://angular.dev/guide/image-optimization#configuring-an-image-loader-for-ngoptimizedimage)
 
 **src\app\app.config.ts**
 
@@ -942,13 +898,13 @@ import { environment } from "src/environments/environment";
 provideCloudinaryLoader(environment.cloudinary),
 ```
 
-### 4.5. Create products page
+### 4.5. Створити сторінку товарів
 
 ```bash
 ng g c pages/client/products
 ```
 
-The code in the component is not much different from other pages, except that a call to the `this.prodService.findAll()` method has been added during initialization and after changing the language.
+Код у компоненті не сильно відрізняється від інших сторінок, окрім того, що під час ініціалізації та після зміни мови було додано виклик методу `this.prodService.findAll()`.
 
 **src\app\pages\client\products\products.component.ts**
 
@@ -1097,19 +1053,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
 }
 ```
 
-### 4.6. Create product details page
+### 4.6. Створити сторінку з детальною інформацією про продукт
 
 ```bash
 ng g c pages/client/product-detail
 ```
 
-The code here is also similar. It also executes a query to retrieve data. But a little more information is passed to the this.seo.updateSeo method.
+Код тут також схожий. Він також виконує запит для отримання даних. Але трохи більше інформації передається методу this.seo.updateSeo.
 
-In jsonLd we pass datePublished, dateModified and image.
-Also in params we pass name and desc. ! Please note that I do not pass product.description, but product.metaDesc - a special description for meta tags.
+У jsonLd ми передаємо datePublished, dateModified та image.
+Також у params ми передаємо name та desc. ! Зверніть увагу, що я передаю не product.description, а product.metaDesc - спеціальний опис для метатегів.
 
 **src\types\seo.types.ts**
-For convenience, I added the ProductDetailsParams interface
+Для зручності я додав інтерфейс ProductDetailsParams
 
 ```ts
 export interface ProductDetailsParams {
@@ -1322,7 +1278,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 }
 ```
 
-### 4.7. Update translation files
+### 4.7. Оновити файли перекладу
 
 **public\i18n\en.json**
 
@@ -1404,7 +1360,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 }
 ```
 
-### 4.8. Update routes
+### 4.8. Оновити маршрути
 
 **src\app\pages\index.ts**
 
@@ -1468,9 +1424,9 @@ export const routes: Routes = [
 ...
 ```
 
-## 5. Create sitemap.xml
+## 5. Створити файл sitemap.xml
 
-Since we have pages with dynamic data, I decided to make a sitemap generator that would generate a new sitemap every hour, and in between, return cached data.
+Оскільки у нас є сторінки з динамічними даними, я вирішив створити генератор sitemap, який би генерував нову мапу сайту щогодини, а між цими процесами повертав кешовані дані.
 
 ```bash
 touch src/server/core/sitemap.ts
@@ -1554,9 +1510,9 @@ app.get("/sitemap.xml", (req, res) => {
 });
 ```
 
-## 6. Create robots.txt
+## 6. Створити файл robots.txt
 
-**Warning! This and other steps are done after deploying to ~~render.com~~ [railway.com](https://railway.com)**
+**Увага! Цей та інші кроки виконуються після розгортання на ~~render.com~~ [railway.com](https://railway.com)**
 
 ```bash
 touch public/robots.txt
@@ -1574,12 +1530,12 @@ Sitemap: https://angular-19-ssr-ngx-translate-seo-production.up.railway.app/site
 
 ```
 
-## 7. Add Google Analytics
+## 7. Додати Google Analytics
 
-Warning! You must insert YOUR code obtained from https://tagmanager.google.com
+Увага! Ви повинні вставити СВІЙ код, отриманий на https://tagmanager.google.com
 
 **src\index.html**
-Add as close to the opening `<head>` tag as possible
+Додайте якомога ближче до початкового тегу `<head>`
 
 ```html
 <!-- Google Tag Manager -->
@@ -1598,7 +1554,7 @@ Add as close to the opening `<head>` tag as possible
 <!-- End Google Tag Manager -->
 ```
 
-Insert this code immediately after the opening <body> tag:
+Вставте цей код одразу після початкового тегу <body>:
 
 ```html
 <!-- Google Tag Manager (noscript) -->
@@ -1613,11 +1569,11 @@ Insert this code immediately after the opening <body> tag:
 <!-- End Google Tag Manager (noscript) -->
 ```
 
-## 8. Next will be bug fixes and improvements to SEO and other aspects
+## 8. Далі будуть виправлення помилок та покращення SEO та інших аспектів.
 
-It would be better to do this before deployment
+Краще зробити це до розгортання.
 
-### 8.1. Add "offers" and "inLanguage" fields for structured page description.
+### 8.1. Додати поля "offers" та "inLanguage" для структурованого опису сторінки.
 
 https://schema.org/offers
 
@@ -1684,25 +1640,25 @@ export interface Product {
 }
 ```
 
-You need to update the code that uses the following types: ServerProduct, Product, JsonLdInput, and JsonLd.
+Потрібно оновити код, який використовує такі типи: ServerProduct, Product, JsonLdInput та JsonLd.
 
-### 8.2. Add more text
+### 8.2. Додати більше тексту
 
-More text has been added to each page for better indexing. Also added some styles, new translation lines. Added a new field "shortDesc" in products, the value of which is displayed on the "products" page.
-Nothing really important.
+На кожну сторінку додано більше тексту для кращої індексації. Також додано деякі стилі, нові рядки перекладу. Додано нове поле "shortDesc" у розділі "продукти", значення якого відображається на сторінці "продукти".
+Нічого особливо важливого.
 
-All text and 404 page generated by AI
+Весь текст та сторінка 404 згенеровані штучним інтелектом.
 
-### 8.3. Add preview images for pages
+### 8.3. Додати зображення попереднього перегляду для сторінок
 
 **src\app\pages\client\home\home.component.ts**
-Replace this:
+Замініть це:
 
 ```ts
 const jsonLd: JsonLdInput = { "@type": "WebSite" };
 ```
 
-With this:
+Цим:
 
 ```ts
 const jsonLd: JsonLdInput = {
@@ -1711,9 +1667,9 @@ const jsonLd: JsonLdInput = {
 };
 ```
 
-Repeat on other pages.
+Повторити на інших сторінках.
 
-### 8.4. FIX: return status code 404 for NotFound page
+### 8.4. FIX: повертати код стану 404 для сторінки NotFound
 
 **src\server.ts**
 
@@ -1742,7 +1698,7 @@ app.get("**", (req, res, next) => {
 ...
 ```
 
-### 8.5. FIX: redirect to a 404 page if the product is not found
+### 8.5. FIX: перенаправити на сторінку 404, якщо товар не знайдено
 
 **src\server.ts**
 
@@ -1794,35 +1750,35 @@ private getProductDetails(slug: string): void {
   }
 ```
 
-I understand that this is a strange decision, but I don't have enough rivets for more. 😵
+Я розумію, що це дивне рішення, але в мене не вистачає клепок на більше. 😵
 
-### 8.6. More
+### 8.6. Більше
 
-Of course, you can always add something, improve something, change something. You could add ~~Keywords~~, Canonical, Robots Tag.. describe the schemas for structured data in more detail, but in my opinion, this is enough for a test project.
+Звісно, ​​завжди можна щось додати, щось покращити, щось змінити. Можна було б додати ~~Keywords~~, Canonical, Robots Tag.. детальніше описати схеми для структурованих даних, але, на мою думку, цього достатньо для тестового проекту.
 
-## 9. Are pages with ngx-translate and SSR indexed?
+## 9. Чи індексуються сторінки з ngx-translate та SSR?
 
-My answer is yes. Right now, while I haven't pushed any commits with new page text, Google has already indexed two pages.
+Моя відповідь – так. Наразі, Google вже проіндексував дві сторінки.
 ![asnts-search.png](readme-images/asnts-search.png)
-Let's see what happens when I push all the changes starting with [Next will be bug fixes and improvements to SEO and other aspects](#next-will-be-bug-fixes-and-improvements-to-seo-and-other-aspects).
+Подивимося, що станеться, коли я застосую всі зміни, починаючи з [Next will be bug fixes and improvements to SEO and other aspects](#next-will-be-bug-fixes-and-improvements-to-seo-and-other-aspects).
 
-## 10. 5 days later
+## 10. 5 днів по тому
 
-Well, I think the following screenshot proves that the site is successfully indexed when using ngx-translate with SSR.
+Ну, я думаю, що наступний скріншот доводить, що сайт успішно індексується при використанні ngx-translate з SSR.
 ![asnts-search-2.png](readme-images/asnts-search-2.png)
 
-## 11. Epilogue
+## 11. Епілог
 
-I would like to point out once again that I am not a professional web developer (I have no commercial experience) and I am still at the stage of learning Angular. Therefore, there are many errors in the code, and considering that this was a test project, I did not set a goal to make it perfect. I was just trying to answer the question: "will the site be indexed with ngx-translate and SSR?".
+Ще раз хочу зазначити, що я не професійний веб-розробник (немає комерційного досвіду) і все ще перебуваю на стадії вивчення Angular. Тому в коді багато помилок, і враховуючи, що це був тестовий проект, я не ставив перед собою мети зробити його ідеальним. Я просто намагався відповісти на питання: "чи буде сайт проіндексований за допомогою ngx-translate та SSR?".
 
-I also understand that the documentation and English are terrible. Sorry for that. 😅
+Я також розумію, що документація жахлива. Вибачте за це. 😅
 
-In any case, if this project is useful to someone - that would be great.
-And if someone wants to make improvements, or give useful advice - that would be even better 😊
+У будь-якому разі, якщо цей проєкт буде комусь корисним – це було б чудово.
+А якщо хтось хоче внести покращення або дати корисну пораду – це було б ще краще 😊
 
-You can contact me at this email address: **fomenko.anton@protonmail.com**
+Ви можете зв’язатися зі мною за цією електронною адресою:**fomenko.anton@protonmail.com**
 
-## 12. Useful links:
+## 12. Корисні посилання:
 
 - [Google Tag Manager](https://tagmanager.google.com/)
 - [Google Analytics](https://analytics.google.com/analytics)
